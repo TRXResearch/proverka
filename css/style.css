@@ -40,3 +40,220 @@ pointer-events:none;
 z-index:999;
 
 }
+/* =================================
+   AML CRYSTAL HERO
+================================= */
+
+.crystal-hero {
+
+    position: relative;
+    min-height: 850px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 80px 6%;
+
+    overflow: hidden;
+
+}
+
+
+.hero-left {
+
+    width: 50%;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.hero-left h1 {
+
+    font-size: 72px;
+
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    letter-spacing: -2px;
+
+}
+
+
+.hero-left h1 span {
+
+    color:#00ff88;
+
+    text-shadow:
+    0 0 30px rgba(0,255,136,.6);
+
+}
+
+
+
+.hero-left p {
+
+    margin-top:30px;
+
+    max-width:600px;
+
+    font-size:20px;
+
+    color:#b8c8d8;
+
+}
+
+
+
+.scan-box {
+
+    display:flex;
+
+    margin-top:40px;
+
+    max-width:650px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(0,255,136,.3);
+
+    border-radius:18px;
+
+    padding:8px;
+
+    backdrop-filter:blur(20px);
+
+}
+
+
+
+.scan-box input {
+
+    flex:1;
+
+    background:transparent;
+
+    border:0;
+
+    outline:none;
+
+    color:white;
+
+    padding:20px;
+
+    font-size:16px;
+
+}
+
+
+
+.scan-box button {
+
+
+    background:#00ff88;
+
+    color:#001b10;
+
+    border:0;
+
+    padding:0 35px;
+
+    border-radius:14px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+
+.quick-buttons {
+
+    margin-top:25px;
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+
+
+.quick-buttons button {
+
+    background:rgba(0,255,136,.08);
+
+    border:1px solid rgba(0,255,136,.3);
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:30px;
+
+}
+
+
+
+/* CRYSTAL */
+
+.hero-crystal {
+
+    width:45%;
+
+    height:600px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+}
+
+
+
+.crystal {
+
+    font-size:260px;
+
+    filter:
+
+    drop-shadow(0 0 40px #00ff88)
+
+    drop-shadow(0 0 80px #00d4ff);
+
+
+    animation:
+
+    crystalFloat 4s ease-in-out infinite;
+
+}
+
+
+
+@keyframes crystalFloat {
+
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+
+50%{
+
+transform:translateY(-30px);
+
+}
+
+
+}
