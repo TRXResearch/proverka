@@ -257,3 +257,244 @@ transform:translateY(-30px);
 
 
 }
+/* ===============================
+ PREMIUM 3D AML CRYSTAL
+================================ */
+
+
+.hero-crystal {
+
+    position:relative;
+    height:650px;
+
+}
+
+
+.crystal-core {
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:
+    translate(-50%,-50%);
+
+}
+
+
+.crystal-shape {
+
+
+    width:260px;
+    height:340px;
+
+
+    background:
+
+    linear-gradient(
+    135deg,
+    rgba(0,255,200,.8),
+    rgba(0,120,255,.7),
+    rgba(0,255,136,.4)
+    );
+
+
+    clip-path:polygon(
+    50% 0%,
+    90% 25%,
+    90% 75%,
+    50% 100%,
+    10% 75%,
+    10% 25%
+    );
+
+
+    border:2px solid #00ffff;
+
+
+    box-shadow:
+
+    0 0 40px #00ff88,
+    0 0 100px #00d4ff,
+    inset 0 0 80px rgba(255,255,255,.4);
+
+
+    animation:
+
+    crystalRotate 6s infinite ease-in-out;
+
+
+}
+
+
+
+.crystal-glow {
+
+
+position:absolute;
+
+width:500px;
+
+height:500px;
+
+top:-80px;
+
+left:-120px;
+
+
+background:
+
+radial-gradient(
+
+circle,
+
+rgba(0,255,136,.45),
+
+transparent 70%
+
+);
+
+
+filter:blur(40px);
+
+z-index:-1;
+
+
+}
+
+
+
+@keyframes crystalRotate {
+
+
+0%{
+
+transform:
+
+rotateY(0deg)
+
+translateY(0);
+
+}
+
+
+50%{
+
+transform:
+
+rotateY(25deg)
+
+translateY(-25px);
+
+}
+
+
+100%{
+
+transform:
+
+rotateY(0deg)
+
+translateY(0);
+
+}
+
+
+}
+
+
+
+/* blockchain particles */
+
+
+.network-lines span {
+
+
+position:absolute;
+
+width:8px;
+
+height:8px;
+
+background:#00ff88;
+
+border-radius:50%;
+
+box-shadow:
+
+0 0 20px #00ff88;
+
+
+animation:
+
+particle 4s infinite;
+
+
+}
+
+
+
+.network-lines span:nth-child(1){
+
+top:20%;
+left:10%;
+
+}
+
+
+.network-lines span:nth-child(2){
+
+top:70%;
+right:10%;
+
+}
+
+
+.network-lines span:nth-child(3){
+
+top:10%;
+right:20%;
+
+}
+
+
+.network-lines span:nth-child(4){
+
+bottom:20%;
+left:20%;
+
+}
+
+
+
+@keyframes particle {
+
+
+0%{
+
+transform:scale(1);
+
+opacity:.3;
+
+}
+
+
+50%{
+
+transform:scale(2);
+
+opacity:1;
+
+}
+
+
+100%{
+
+transform:scale(1);
+
+opacity:.3;
+
+}
+
+}
