@@ -1,1 +1,42 @@
+/* AML Crystal V2 Override */
 
+body {
+    background:
+    radial-gradient(circle at 75% 20%,
+    rgba(0,255,136,0.18),
+    transparent 35%),
+
+    radial-gradient(circle at 20% 60%,
+    rgba(0,212,255,0.15),
+    transparent 40%),
+
+    #030b06 !important;
+}
+
+
+body::before {
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+background-image:
+
+linear-gradient(
+rgba(0,255,136,0.04) 1px,
+transparent 1px),
+
+linear-gradient(
+90deg,
+rgba(0,212,255,0.04) 1px,
+transparent 1px);
+
+background-size:60px 60px;
+
+pointer-events:none;
+
+z-index:999;
+
+}
