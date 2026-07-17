@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: #0a0e17;
     color: #ffffff;
     line-height: 1.6;
@@ -79,6 +79,8 @@ a {
     border: none;
     cursor: pointer;
     transition: all 0.3s;
+    display: inline-block;
+    text-align: center;
 }
 
 .btn-outline {
@@ -117,8 +119,11 @@ a {
 .theme-toggle {
     font-size: 20px;
     cursor: pointer;
+    background: none;
+    border: none;
     opacity: 0.6;
     transition: opacity 0.3s;
+    padding: 4px;
 }
 
 .theme-toggle:hover {
@@ -128,7 +133,7 @@ a {
 /* ========== INTRO ========== */
 .intro {
     position: relative;
-    padding: 60px 0;
+    padding: 60px 0 80px;
     overflow: hidden;
     min-height: 80vh;
 }
@@ -140,8 +145,9 @@ a {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.08;
+    opacity: 0.10;
     z-index: 0;
+    pointer-events: none;
 }
 
 .intro__content {
@@ -266,8 +272,13 @@ a {
     border: none;
     color: #fff;
     font-size: 15px;
-    min-width: 130px;
+    min-width: 140px;
     cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
 }
 
 .calc-input-group select option {
@@ -295,6 +306,7 @@ a {
     font-size: 28px;
     color: #FFCA0E;
     margin: 4px 0 8px;
+    opacity: 0.6;
 }
 
 .btn-submit {
@@ -433,6 +445,12 @@ a {
 }
 
 /* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+    .intro__grid {
+        gap: 30px;
+    }
+}
+
 @media (max-width: 992px) {
     .intro__grid {
         grid-template-columns: 1fr;
@@ -448,11 +466,12 @@ a {
     .header__inner {
         flex-direction: column;
         align-items: stretch;
+        gap: 12px;
     }
     
     .nav {
         justify-content: center;
-        gap: 12px;
+        gap: 10px;
     }
     
     .nav a {
@@ -465,7 +484,8 @@ a {
     }
     
     .intro {
-        padding: 30px 0;
+        padding: 30px 0 50px;
+        min-height: auto;
     }
     
     .intro__title {
@@ -505,16 +525,16 @@ a {
     .content h2 {
         font-size: 22px;
     }
+    
+    .cta-buttons .btn {
+        width: 100%;
+        text-align: center;
+    }
 }
 
 @media (max-width: 480px) {
     .intro__title {
         font-size: 22px;
-    }
-    
-    .cta-buttons .btn {
-        width: 100%;
-        text-align: center;
     }
     
     .news__item {
@@ -523,5 +543,10 @@ a {
     
     .news__title {
         font-size: 15px;
+    }
+    
+    .footer__inner {
+        flex-direction: column;
+        text-align: center;
     }
 }
