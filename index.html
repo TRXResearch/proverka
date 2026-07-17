@@ -3,569 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cryptocurrency exchange in Milan | ObmenAT24</title>
-    <style>
-        /* ===== RESET & BASE ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0a0e17;
-            color: #fff;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* ===== HEADER ===== */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .logo img {
-            height: 40px;
-        }
-        .nav {
-            display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
-        }
-        .nav a {
-            color: #fff;
-            font-size: 14px;
-            text-transform: uppercase;
-            transition: color 0.3s;
-            font-weight: 500;
-        }
-        .nav a:hover {
-            color: #FFCA0E;
-        }
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-        }
-        .btn-exchange {
-            padding: 8px 20px;
-            border: 1px solid #FFCA0E;
-            color: #FFCA0E;
-            border-radius: 12px;
-            font-size: 14px;
-            background: transparent;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .btn-exchange:hover {
-            background: #FFCA0E;
-            color: #000;
-        }
-        .lang-switcher {
-            display: flex;
-            gap: 8px;
-            font-size: 13px;
-        }
-        .lang-switcher a {
-            color: #fff;
-            padding-right: 8px;
-            border-right: 1px solid rgba(255,255,255,0.3);
-        }
-        .lang-switcher a:last-child {
-            border-right: none;
-        }
-        .lang-switcher .active {
-            color: #FFCA0E;
-        }
-
-        /* ===== INTRO ===== */
-        .intro {
-            padding: 40px 0 30px;
-            position: relative;
-            overflow: hidden;
-        }
-        .intro-bg-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.1;
-            z-index: 0;
-        }
-        .intro-content {
-            position: relative;
-            z-index: 1;
-        }
-        .intro h1 {
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-        .intro h1 span {
-            color: #FFCA0E;
-        }
-        .intro h3 {
-            font-size: 22px;
-            font-weight: 400;
-            margin-bottom: 30px;
-            color: #ccc;
-        }
-        .intro-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: start;
-        }
-        @media (max-width: 768px) {
-            .intro-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ===== CALCULATOR ===== */
-        .calculator {
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            padding: 30px;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        .calc-tabs {
-            display: flex;
-            gap: 5px;
-            margin-bottom: 25px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            padding: 4px;
-        }
-        .calc-tab {
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: #888;
-            flex: 1;
-            text-align: center;
-        }
-        .calc-tab.active {
-            background: #FFCA0E;
-            color: #000;
-            font-weight: 600;
-        }
-        .calc-tab:hover:not(.active) {
-            color: #fff;
-        }
-        .calc-row {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-        .calc-row select,
-        .calc-row input {
-            flex: 1;
-            min-width: 120px;
-            padding: 12px 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(255,255,255,0.05);
-            color: #fff;
-            font-size: 15px;
-        }
-        .calc-row select option {
-            background: #1a1f2e;
-        }
-        .calc-row input {
-            min-width: 140px;
-        }
-        .calc-row input::placeholder {
-            color: #666;
-        }
-        .calc-arrow {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: #FFCA0E;
-        }
-        .btn-submit {
-            width: 100%;
-            padding: 14px;
-            background: #FFCA0E;
-            color: #000;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
-        }
-        .btn-submit:hover {
-            background: #e6b50a;
-            transform: scale(1.01);
-        }
-
-        /* ===== NEWS SLIDER ===== */
-        .news-section {
-            padding: 40px 0;
-        }
-        .news-title {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 25px;
-            color: #eee;
-        }
-        .news-slider {
-            overflow: hidden;
-            position: relative;
-        }
-        .news-track {
-            display: flex;
-            transition: transform 0.5s ease;
-            gap: 20px;
-        }
-        .news-item {
-            min-width: 100%;
-            padding: 20px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 16px;
-            border-left: 3px solid #FFCA0E;
-        }
-        .news-item .date {
-            color: #FFCA0E;
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-        .news-item .title {
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 1.4;
-        }
-        .news-dots {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 20px;
-        }
-        .news-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #444;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .news-dot.active {
-            background: #FFCA0E;
-            width: 28px;
-            border-radius: 5px;
-        }
-
-        /* ===== TEXT BLOCKS ===== */
-        .content-text {
-            padding: 40px 0;
-        }
-        .content-text h2 {
-            font-size: 28px;
-            margin: 30px 0 15px;
-            color: #FFCA0E;
-        }
-        .content-text h3 {
-            font-size: 22px;
-            margin: 25px 0 12px;
-            color: #ddd;
-        }
-        .content-text p {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #bbb;
-            margin-bottom: 15px;
-        }
-        .content-text ul {
-            padding-left: 25px;
-            margin: 15px 0;
-        }
-        .content-text ul li {
-            margin-bottom: 10px;
-            color: #ccc;
-            list-style-type: disc;
-        }
-
-        /* ===== FOOTER / BOTTOM ===== */
-        .bottom-buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-        .bottom-buttons .btn {
-            flex: 1;
-            min-width: 150px;
-            padding: 14px 20px;
-            border-radius: 12px;
-            text-align: center;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        .btn-telegram {
-            background: #FFCA0E;
-            color: #000;
-        }
-        .btn-telegram:hover {
-            background: #e6b50a;
-        }
-        .btn-bot {
-            background: rgba(255,255,255,0.08);
-            color: #fff;
-            border: 1px solid rgba(255,255,255,0.15);
-        }
-        .btn-bot:hover {
-            background: rgba(255,255,255,0.15);
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .nav {
-                justify-content: center;
-                gap: 12px;
-            }
-            .nav a {
-                font-size: 12px;
-            }
-            .header-actions {
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-            .intro h1 {
-                font-size: 28px;
-            }
-            .intro h3 {
-                font-size: 18px;
-            }
-            .calculator {
-                padding: 20px;
-            }
-            .calc-row {
-                flex-direction: column;
-            }
-            .calc-row select,
-            .calc-row input {
-                min-width: 100%;
-            }
-            .calc-arrow {
-                transform: rotate(90deg);
-            }
-        }
-        @media (max-width: 480px) {
-            .intro h1 {
-                font-size: 22px;
-            }
-            .news-item .title {
-                font-size: 15px;
-            }
-            .lang-switcher {
-                font-size: 11px;
-            }
-        }
-    </style>
+    <title>ObmenAT777 — Cryptocurrency Exchange</title>
+    
+    <!-- Подключаем стили -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
 </head>
 <body>
 
-    <!-- ===== HEADER ===== -->
-    <header class="header container">
-        <div class="logo">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40'%3E%3Ctext x='0' y='28' font-size='24' font-weight='700' fill='%23FFCA0E'%3EObmenAT24%3C/text%3E%3C/svg%3E" alt="ObmenAT24" height="40">
-        </div>
-        <nav class="nav">
-            <a href="#">Exchange</a>
-            <a href="#">Company</a>
-            <a href="#">Precious metals</a>
-            <a href="#">Partners</a>
-            <a href="#">Blog</a>
-            <a href="#">Promotions</a>
-            <a href="#">Contacts</a>
-        </nav>
-        <div class="header-actions">
-            <button class="btn-exchange">Exchange</button>
-            <div class="lang-switcher">
-                <a href="#">ukr</a>
-                <a href="#" class="active">eng</a>
-                <a href="#">rus</a>
+    <!-- ========================================= -->
+    <!-- ШАПКА (HEADER) -->
+    <!-- ========================================= -->
+    <header class="header">
+        <div class="container header__inner">
+            <a href="/" class="logo">
+                <img src="images/logo.svg" alt="ObmenAT777" width="200" height="40">
+            </a>
+            
+            <nav class="nav">
+                <a href="#">Exchange</a>
+                <a href="#">Company</a>
+                <a href="#">Precious metals</a>
+                <a href="#">Partners</a>
+                <a href="#">Blog</a>
+                <a href="#">Promotions</a>
+                <a href="#">Contacts</a>
+            </nav>
+            
+            <div class="header__actions">
+                <button class="btn btn-outline">Exchange</button>
+                <div class="lang-switcher">
+                    <a href="#">ukr</a>
+                    <a href="#" class="active">eng</a>
+                    <a href="#">rus</a>
+                </div>
+                <div class="theme-toggle">🌙</div>
             </div>
         </div>
     </header>
 
-    <!-- ===== INTRO ===== -->
+    <!-- ========================================= -->
+    <!-- ГЛАВНЫЙ БЛОК (INTRO) -->
+    <!-- ========================================= -->
     <section class="intro">
-        <video class="intro-bg-video" muted loop autoplay playsinline>
-            <source src="data:video/mp4;base64,AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDEAAAAIZnJlZQAAAQxtZGF0AAAAMgAAACh3cnZrbG9n" type="video/mp4">
+        <video class="intro__bg" muted loop autoplay playsinline>
+            <source src="video/bg.mp4" type="video/mp4">
         </video>
-        <div class="container intro-content">
-            <div class="intro-grid">
-                <div>
-                    <h1>Cryptocurrency exchange <span>in Milan</span></h1>
-                    <h3>We exchange cryptocurrencies for profitable reality</h3>
-                    <div class="bottom-buttons">
-                        <button class="btn btn-telegram">📱 Subscribe for rate updates</button>
-                        <button class="btn btn-bot">🤖 Crypto Bot</button>
-                        <button class="btn btn-bot">💳 E-money Bot</button>
+        
+        <div class="container intro__content">
+            <div class="intro__grid">
+                <!-- Левая колонка -->
+                <div class="intro__left">
+                    <h1 class="intro__title">
+                        Cryptocurrency exchange <span>with ObmenAT777</span>
+                    </h1>
+                    <p class="intro__subtitle">
+                        We exchange cryptocurrencies for profitable reality
+                    </p>
+                    
+                    <div class="cta-buttons">
+                        <a href="#" class="btn btn-gold">📱 Subscribe for rate updates</a>
+                        <a href="#" class="btn btn-dark">🤖 Crypto Bot</a>
+                        <a href="#" class="btn btn-dark">💳 E-money Bot</a>
                     </div>
                 </div>
+                
+                <!-- Правая колонка — КАЛЬКУЛЯТОР -->
                 <div class="calculator">
-                    <div class="calc-tabs">
-                        <div class="calc-tab active">Exchange</div>
-                        <div class="calc-tab">Buy</div>
-                        <div class="calc-tab">Sell</div>
-                        <div class="calc-tab">Transfer</div>
+                    <div class="calculator__tabs">
+                        <button class="calc-tab active">Exchange</button>
+                        <button class="calc-tab">Buy</button>
+                        <button class="calc-tab">Sell</button>
+                        <button class="calc-tab">Transfer</button>
                     </div>
-                    <div class="calc-row">
-                        <select>
-                            <option>Bitcoin (BTC)</option>
-                            <option>Ethereum (ETH)</option>
-                            <option>Tether (USDT)</option>
-                        </select>
-                        <input type="number" placeholder="0.00" value="1.0">
+                    
+                    <div class="calculator__body">
+                        <div class="calc-row">
+                            <div class="calc-field">
+                                <label>You give</label>
+                                <div class="calc-input-group">
+                                    <select>
+                                        <option>Bitcoin (BTC)</option>
+                                        <option>Ethereum (ETH)</option>
+                                        <option selected>Tether (USDT)</option>
+                                    </select>
+                                    <input type="number" value="1.0" step="0.01">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="calc-arrow">⬇</div>
+                        
+                        <div class="calc-row">
+                            <div class="calc-field">
+                                <label>You receive</label>
+                                <div class="calc-input-group">
+                                    <select>
+                                        <option selected>USDT (TRC20)</option>
+                                        <option>USD</option>
+                                        <option>EUR</option>
+                                    </select>
+                                    <input type="number" value="95.00" step="0.01">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-submit">Exchange now</button>
+                        <p class="calc__info">✅ 100% guarantee • Low fees • Large reserves</p>
                     </div>
-                    <div class="calc-arrow">⬇</div>
-                    <div class="calc-row">
-                        <select>
-                            <option>USDT (TRC20)</option>
-                            <option>USD</option>
-                            <option>EUR</option>
-                        </select>
-                        <input type="number" placeholder="0.00" value="95.00">
-                    </div>
-                    <button class="btn-submit">Exchange now</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== NEWS ===== -->
-    <section class="news-section">
+    <!-- ========================================= -->
+    <!-- БЛОК НОВОСТЕЙ -->
+    <!-- ========================================= -->
+    <section class="news">
         <div class="container">
-            <h2 class="news-title">📰 Latest news</h2>
-            <div class="news-slider">
-                <div class="news-track" id="newsTrack">
-                    <div class="news-item">
-                        <div class="date">6/22/2026</div>
-                        <div class="title">Ukraine has appointed the main regulator of the crypto market. Tether is abandoning its "gold" stablecoin. Payoneer will be sold by 2027.</div>
-                    </div>
-                    <div class="news-item">
-                        <div class="date">6/9/2026</div>
-                        <div class="title">Wise gets caught up in an AML scandal. Mastercard expands support for stablecoins. Revolut's co-founder steps down as CTO.</div>
-                    </div>
-                    <div class="news-item">
-                        <div class="date">4/20/2026</div>
-                        <div class="title">Bitcoin's price has resumed its growth. Tether has launched a crypto wallet. Japan is tightening control over crypto.</div>
-                    </div>
+            <h2 class="section-title">📰 Latest news</h2>
+            
+            <div class="news__slider">
+                <div class="news__track" id="newsTrack">
+                    <article class="news__item">
+                        <span class="news__date">6/22/2026</span>
+                        <h3 class="news__title">Ukraine has appointed the main regulator of the crypto market. Tether is abandoning its "gold" stablecoin.</h3>
+                    </article>
+                    <article class="news__item">
+                        <span class="news__date">6/9/2026</span>
+                        <h3 class="news__title">Wise gets caught up in an AML scandal. Mastercard expands support for stablecoins.</h3>
+                    </article>
+                    <article class="news__item">
+                        <span class="news__date">4/20/2026</span>
+                        <h3 class="news__title">Bitcoin's price has resumed its growth. Tether has launched a crypto wallet.</h3>
+                    </article>
+                    <article class="news__item">
+                        <span class="news__date">4/6/2026</span>
+                        <h3 class="news__title">Circle launches wrapped Bitcoin. Ukrainian officials declare crypto assets.</h3>
+                    </article>
                 </div>
             </div>
-            <div class="news-dots" id="newsDots">
-                <span class="news-dot active" data-index="0"></span>
-                <span class="news-dot" data-index="1"></span>
-                <span class="news-dot" data-index="2"></span>
+            
+            <div class="news__dots" id="newsDots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
             </div>
         </div>
     </section>
 
-    <!-- ===== CONTENT ===== -->
-    <section class="content-text">
+    <!-- ========================================= -->
+    <!-- ТЕКСТОВЫЙ КОНТЕНТ -->
+    <!-- ========================================= -->
+    <section class="content">
         <div class="container">
-            <h2>Cryptocurrency exchange in Milan</h2>
+            <h2>Cryptocurrency exchange with ObmenAT777</h2>
             <p>The owners of cryptocurrency periodically face the need to exchange electronic assets among themselves or transfer them into Euro. The point of such a procedure is simple enough, but finding a reliable platform that ensures anonymity and safety of deals is a rather time-consuming process.</p>
-            <p>The ObmenAT24 service can make life easier for crypto owners in any part of the world. By using this cryptocurrency exchanger in Milan and other cities around the world, including Ukraine, you can in a short period of time, securely, and profitably exchange cryptocurrency.</p>
+            <p>The ObmenAT777 service can make life easier for crypto owners in any part of the world. By using this cryptocurrency exchanger, you can in a short period of time, securely, and profitably exchange cryptocurrency.</p>
 
-            <h2>Best cryptocurrency exchange: Milan</h2>
-            <p>Our service offers you the best conditions for cryptocurrency exchange in Milan. We guarantee 100% exchange security, large reserves, and low fees.</p>
+            <h2>Best cryptocurrency exchange — ObmenAT777</h2>
+            <p>Our service offers you the best conditions for cryptocurrency exchange. We guarantee 100% exchange security, large reserves, and low fees.</p>
 
             <h2>What types of crypto exchanges are possible</h2>
-            <p>ObmenAT24 is a crypto exchange in Milan where you can convert:</p>
+            <p>ObmenAT777 is a crypto exchange where you can convert:</p>
             <ul>
                 <li><strong>One kind of cryptocurrency to another</strong> — to do this, you select the exchange pair of interest and fill in the blank fields.</li>
-                <li><strong>Crypto to Tether</strong> — specify the coin and choose the currency you would like to receive. You can transfer fiat money to your wallet or card or, if you choose this option, get cash in Milan in one of the partner offices.</li>
-                <li><strong>Tether to crypto</strong> — the process opposite of the one described above, allowing anyone to become a crypto owner. At the same time, it is crucial to have a reasonable amount of fiat to purchase the crypto of interest.</li>
+                <li><strong>Crypto to Tether</strong> — specify the coin and choose the currency you would like to receive. You can transfer fiat money to your wallet or card.</li>
+                <li><strong>Tether to crypto</strong> — the process opposite of the one described above, allowing anyone to become a crypto owner.</li>
             </ul>
             <p>It will take a few minutes to complete the application process. The absence of mandatory registration is one of the main reasons.</p>
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
-    <footer style="padding:30px 0;border-top:1px solid rgba(255,255,255,0.05);margin-top:20px;">
-        <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:15px;font-size:14px;color:#666;">
-            <span>© 2026 ObmenAT24 — Cryptocurrency exchange</span>
-            <span>📍 Milan, Italy</span>
+    <!-- ========================================= -->
+    <!-- ПОДВАЛ (FOOTER) -->
+    <!-- ========================================= -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <span>© 2026 ObmenAT777 — Cryptocurrency exchange</span>
+            <span>📍 Worldwide service</span>
         </div>
     </footer>
 
-    <!-- ===== JAVASCRIPT ===== -->
-    <script>
-        // === NEWS SLIDER ===
-        const track = document.getElementById('newsTrack');
-        const dots = document.querySelectorAll('.news-dot');
-        let currentSlide = 0;
-        const totalSlides = dots.length;
-
-        function goToSlide(index) {
-            if (index < 0) index = totalSlides - 1;
-            if (index >= totalSlides) index = 0;
-            currentSlide = index;
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentSlide);
-            });
-        }
-
-        dots.forEach((dot, i) => {
-            dot.addEventListener('click', () => goToSlide(i));
-        });
-
-        // Auto-slide every 6 seconds
-        setInterval(() => {
-            goToSlide(currentSlide + 1);
-        }, 6000);
-
-        // === CALCULATOR TABS ===
-        document.querySelectorAll('.calc-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-
-        // === EXCHANGE BUTTON ===
-        document.querySelector('.btn-submit').addEventListener('click', function() {
-            alert('⚠️ This is a demo version.\nThe full exchange functionality is available on the live site.\n\n✅ Your design has been fully restored!');
-        });
-
-        console.log('🎯 ObmenAT24 design successfully restored!');
-        console.log('📌 Next steps:');
-        console.log('  1. Replace placeholder images');
-        console.log('  2. Add real exchange logic');
-        console.log('  3. Connect payment systems');
-        console.log('  4. Deploy to hosting');
-    </script>
+    <!-- ========================================= -->
+    <!-- ПОДКЛЮЧАЕМ JAVASCRIPT -->
+    <!-- ========================================= -->
+    <script src="js/main.js"></script>
 
 </body>
 </html>
