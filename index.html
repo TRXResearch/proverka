@@ -4,17 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ObmenAT777 — Cryptocurrency Exchange</title>
+    <meta name="description" content="Cryptocurrency exchange with ObmenAT777. Best rates, 100% guarantee, large reserves.">
     
-    <!-- Подключаем стили -->
     <link rel="stylesheet" href="css/style.css">
-    
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="images/favicon.png">
 </head>
 <body>
 
     <!-- ========================================= -->
-    <!-- ШАПКА (HEADER) -->
+    <!-- ШАПКА -->
     <!-- ========================================= -->
     <header class="header">
         <div class="container header__inner">
@@ -33,34 +31,37 @@
             </nav>
             
             <div class="header__actions">
-                <button class="btn btn-outline">Exchange</button>
+                <button class="btn btn-outline" onclick="document.getElementById('calculator').scrollIntoView({behavior:'smooth'})">
+                    Exchange
+                </button>
                 <div class="lang-switcher">
                     <a href="#">ukr</a>
                     <a href="#" class="active">eng</a>
                     <a href="#">rus</a>
                 </div>
-                <div class="theme-toggle">🌙</div>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
             </div>
         </div>
     </header>
 
     <!-- ========================================= -->
-    <!-- ГЛАВНЫЙ БЛОК (INTRO) -->
+    <!-- ГЛАВНЫЙ БЛОК С КАЛЬКУЛЯТОРОМ -->
     <!-- ========================================= -->
-    <section class="intro">
+    <section class="intro" id="intro">
+        <!-- ВИДЕО-ФОН -->
         <video class="intro__bg" muted loop autoplay playsinline>
             <source src="video/bg.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео.
         </video>
         
         <div class="container intro__content">
             <div class="intro__grid">
-                <!-- Левая колонка -->
                 <div class="intro__left">
                     <h1 class="intro__title">
                         Cryptocurrency exchange <span>with ObmenAT777</span>
                     </h1>
                     <p class="intro__subtitle">
-                        We exchange cryptocurrencies for profitable reality
+                        Fast, secure, and profitable exchange of digital assets
                     </p>
                     
                     <div class="cta-buttons">
@@ -70,13 +71,13 @@
                     </div>
                 </div>
                 
-                <!-- Правая колонка — КАЛЬКУЛЯТОР -->
-                <div class="calculator">
+                <!-- КАЛЬКУЛЯТОР -->
+                <div class="calculator" id="calculator">
                     <div class="calculator__tabs">
-                        <button class="calc-tab active">Exchange</button>
-                        <button class="calc-tab">Buy</button>
-                        <button class="calc-tab">Sell</button>
-                        <button class="calc-tab">Transfer</button>
+                        <button class="calc-tab active" data-tab="exchange">Exchange</button>
+                        <button class="calc-tab" data-tab="buy">Buy</button>
+                        <button class="calc-tab" data-tab="sell">Sell</button>
+                        <button class="calc-tab" data-tab="transfer">Transfer</button>
                     </div>
                     
                     <div class="calculator__body">
@@ -84,12 +85,14 @@
                             <div class="calc-field">
                                 <label>You give</label>
                                 <div class="calc-input-group">
-                                    <select>
-                                        <option>Bitcoin (BTC)</option>
-                                        <option>Ethereum (ETH)</option>
-                                        <option selected>Tether (USDT)</option>
+                                    <select id="fromCurrency">
+                                        <option value="BTC">Bitcoin (BTC)</option>
+                                        <option value="ETH">Ethereum (ETH)</option>
+                                        <option value="USDT" selected>Tether (USDT)</option>
+                                        <option value="BNB">BNB</option>
+                                        <option value="SOL">Solana (SOL)</option>
                                     </select>
-                                    <input type="number" value="1.0" step="0.01">
+                                    <input type="number" id="fromAmount" value="1.0" step="0.01" min="0">
                                 </div>
                             </div>
                         </div>
@@ -100,17 +103,18 @@
                             <div class="calc-field">
                                 <label>You receive</label>
                                 <div class="calc-input-group">
-                                    <select>
+                                    <select id="toCurrency">
                                         <option selected>USDT (TRC20)</option>
                                         <option>USD</option>
                                         <option>EUR</option>
+                                        <option>UAH</option>
                                     </select>
-                                    <input type="number" value="95.00" step="0.01">
+                                    <input type="number" id="toAmount" value="95.00" step="0.01" min="0">
                                 </div>
                             </div>
                         </div>
                         
-                        <button class="btn btn-submit">Exchange now</button>
+                        <button class="btn btn-submit" id="exchangeBtn">Exchange now</button>
                         <p class="calc__info">✅ 100% guarantee • Low fees • Large reserves</p>
                     </div>
                 </div>
@@ -119,7 +123,7 @@
     </section>
 
     <!-- ========================================= -->
-    <!-- БЛОК НОВОСТЕЙ -->
+    <!-- НОВОСТИ -->
     <!-- ========================================= -->
     <section class="news">
         <div class="container">
@@ -161,25 +165,31 @@
     <section class="content">
         <div class="container">
             <h2>Cryptocurrency exchange with ObmenAT777</h2>
-            <p>The owners of cryptocurrency periodically face the need to exchange electronic assets among themselves or transfer them into Euro. The point of such a procedure is simple enough, but finding a reliable platform that ensures anonymity and safety of deals is a rather time-consuming process.</p>
-            <p>The ObmenAT777 service can make life easier for crypto owners in any part of the world. By using this cryptocurrency exchanger, you can in a short period of time, securely, and profitably exchange cryptocurrency.</p>
+            <p>The owners of cryptocurrency periodically face the need to exchange electronic assets among themselves or transfer them into fiat money. Finding a reliable platform that ensures anonymity and safety of deals is a rather time-consuming process. ObmenAT777 makes life easier for crypto owners in any part of the world.</p>
 
-            <h2>Best cryptocurrency exchange — ObmenAT777</h2>
-            <p>Our service offers you the best conditions for cryptocurrency exchange. We guarantee 100% exchange security, large reserves, and low fees.</p>
+            <h2>Why choose ObmenAT777?</h2>
+            <ul>
+                <li><strong>100% exchange guarantee</strong> — your funds are completely safe</li>
+                <li><strong>Large reserves</strong> — we can handle any transaction volume</li>
+                <li><strong>Low fees</strong> — competitive rates on all pairs</li>
+                <li><strong>Fast processing</strong> — most exchanges complete in 10-15 minutes</li>
+                <li><strong>24/7 support</strong> — our managers are always ready to help</li>
+            </ul>
 
             <h2>What types of crypto exchanges are possible</h2>
-            <p>ObmenAT777 is a crypto exchange where you can convert:</p>
+            <p>ObmenAT777 offers several exchange options:</p>
             <ul>
-                <li><strong>One kind of cryptocurrency to another</strong> — to do this, you select the exchange pair of interest and fill in the blank fields.</li>
-                <li><strong>Crypto to Tether</strong> — specify the coin and choose the currency you would like to receive. You can transfer fiat money to your wallet or card.</li>
-                <li><strong>Tether to crypto</strong> — the process opposite of the one described above, allowing anyone to become a crypto owner.</li>
+                <li><strong>Crypto to crypto</strong> — exchange one cryptocurrency for another (e.g., BTC to USDT)</li>
+                <li><strong>Crypto to fiat</strong> — sell cryptocurrency for dollars, euros, or hryvnias</li>
+                <li><strong>Fiat to crypto</strong> — buy cryptocurrency with traditional money</li>
+                <li><strong>Transfers</strong> — send funds between different payment systems</li>
             </ul>
-            <p>It will take a few minutes to complete the application process. The absence of mandatory registration is one of the main reasons.</p>
+            <p>It takes just a few minutes to complete an application. No mandatory registration required.</p>
         </div>
     </section>
 
     <!-- ========================================= -->
-    <!-- ПОДВАЛ (FOOTER) -->
+    <!-- ПОДВАЛ -->
     <!-- ========================================= -->
     <footer class="footer">
         <div class="container footer__inner">
@@ -189,7 +199,7 @@
     </footer>
 
     <!-- ========================================= -->
-    <!-- ПОДКЛЮЧАЕМ JAVASCRIPT -->
+    <!-- JAVASCRIPT -->
     <!-- ========================================= -->
     <script src="js/main.js"></script>
 
