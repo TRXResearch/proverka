@@ -1,706 +1,571 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>1inch · AML Crystal</title>
-  <!-- Fonts & Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptocurrency exchange in Milan | ObmenAT24</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e17;
+            color: #fff;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    body {
-      background-color: #0b0d11;
-      font-family: 'Inter', sans-serif;
-      color: #eef2f6;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 1.5rem;
-    }
+        /* ===== HEADER ===== */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .logo img {
+            height: 40px;
+        }
+        .nav {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .nav a {
+            color: #fff;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        .nav a:hover {
+            color: #FFCA0E;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .btn-exchange {
+            padding: 8px 20px;
+            border: 1px solid #FFCA0E;
+            color: #FFCA0E;
+            border-radius: 12px;
+            font-size: 14px;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-exchange:hover {
+            background: #FFCA0E;
+            color: #000;
+        }
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            font-size: 13px;
+        }
+        .lang-switcher a {
+            color: #fff;
+            padding-right: 8px;
+            border-right: 1px solid rgba(255,255,255,0.3);
+        }
+        .lang-switcher a:last-child {
+            border-right: none;
+        }
+        .lang-switcher .active {
+            color: #FFCA0E;
+        }
 
-    .app {
-      max-width: 1400px;
-      width: 100%;
-      background: #13161c;
-      border-radius: 32px;
-      padding: 1.75rem 2rem 2.5rem;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
-      border: 1px solid #2a2f3a;
-    }
+        /* ===== INTRO ===== */
+        .intro {
+            padding: 40px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .intro-bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        .intro-content {
+            position: relative;
+            z-index: 1;
+        }
+        .intro h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .intro h1 span {
+            color: #FFCA0E;
+        }
+        .intro h3 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        @media (max-width: 768px) {
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
-    /* --- NAV --- */
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem 1.5rem;
-      margin-bottom: 2.5rem;
-    }
-    .nav-left { display: flex; align-items: center; gap: 2.5rem; }
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #f0b90b, #f9d75c);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: #9aa2b5;
-    }
-    .nav-links span { cursor: default; transition: color 0.2s; }
-    .nav-links span:hover { color: #f0b90b; }
-    .buy-eth {
-      background: #2c313f;
-      padding: 0.35rem 1rem;
-      border-radius: 40px;
-      color: #f0f4fa;
-      font-weight: 600;
-      font-size: 0.8rem;
-      border: 1px solid #3e4455;
-    }
-    .nav-right { display: flex; align-items: center; gap: 1.2rem; color: #9aa2b5; }
-    .nav-right i { font-size: 1.1rem; cursor: default; }
+        /* ===== CALCULATOR ===== */
+        .calculator {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .calc-tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 25px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 4px;
+        }
+        .calc-tab {
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #888;
+            flex: 1;
+            text-align: center;
+        }
+        .calc-tab.active {
+            background: #FFCA0E;
+            color: #000;
+            font-weight: 600;
+        }
+        .calc-tab:hover:not(.active) {
+            color: #fff;
+        }
+        .calc-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .calc-row select,
+        .calc-row input {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            font-size: 15px;
+        }
+        .calc-row select option {
+            background: #1a1f2e;
+        }
+        .calc-row input {
+            min-width: 140px;
+        }
+        .calc-row input::placeholder {
+            color: #666;
+        }
+        .calc-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #FFCA0E;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: #FFCA0E;
+            color: #000;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        .btn-submit:hover {
+            background: #e6b50a;
+            transform: scale(1.01);
+        }
 
-    /* --- HERO --- */
-    .hero { margin-bottom: 2.5rem; }
-    .hero h1 {
-      font-size: 1.6rem;
-      font-weight: 600;
-      background: linear-gradient(to right, #f9fafc, #b7c0d4);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      display: inline-block;
-    }
-    .hero .sub {
-      font-size: 0.95rem;
-      color: #8f98ae;
-      margin-top: 0.2rem;
-    }
+        /* ===== NEWS SLIDER ===== */
+        .news-section {
+            padding: 40px 0;
+        }
+        .news-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #eee;
+        }
+        .news-slider {
+            overflow: hidden;
+            position: relative;
+        }
+        .news-track {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 20px;
+        }
+        .news-item {
+            min-width: 100%;
+            padding: 20px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+            border-left: 3px solid #FFCA0E;
+        }
+        .news-item .date {
+            color: #FFCA0E;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .news-item .title {
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        .news-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .news-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #444;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .news-dot.active {
+            background: #FFCA0E;
+            width: 28px;
+            border-radius: 5px;
+        }
 
-    /* --- MAIN GRID: CHART + AML WIDGET --- */
-    .main-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 1.8rem;
-      margin-bottom: 1rem;
-    }
+        /* ===== TEXT BLOCKS ===== */
+        .content-text {
+            padding: 40px 0;
+        }
+        .content-text h2 {
+            font-size: 28px;
+            margin: 30px 0 15px;
+            color: #FFCA0E;
+        }
+        .content-text h3 {
+            font-size: 22px;
+            margin: 25px 0 12px;
+            color: #ddd;
+        }
+        .content-text p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #bbb;
+            margin-bottom: 15px;
+        }
+        .content-text ul {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+        .content-text ul li {
+            margin-bottom: 10px;
+            color: #ccc;
+            list-style-type: disc;
+        }
 
-    /* --- CHART CARD (1inch style) --- */
-    .chart-container {
-      background: #0f1219;
-      border-radius: 28px;
-      padding: 1.5rem 1.8rem 1.8rem;
-      border: 1px solid #252b36;
-    }
-    .chart-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 1.5rem;
-    }
-    .pair-price { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }
-    .pair { font-size: 1.3rem; font-weight: 500; }
-    .price { font-size: 1.8rem; font-weight: 600; color: #f2f6fe; }
-    .change {
-      font-size: 0.9rem;
-      font-weight: 500;
-      background: #1e2a2a;
-      color: #f1555b;
-      padding: 0.2rem 0.7rem;
-      border-radius: 30px;
-    }
-    .time-tabs {
-      display: flex;
-      gap: 0.2rem;
-      background: #1a1f29;
-      padding: 0.25rem;
-      border-radius: 40px;
-    }
-    .time-tabs span {
-      padding: 0.3rem 0.9rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      border-radius: 30px;
-      color: #9aa2b5;
-      cursor: default;
-    }
-    .time-tabs span.active { background: #2d3443; color: #f0f4fa; }
+        /* ===== FOOTER / BOTTOM ===== */
+        .bottom-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .bottom-buttons .btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 14px 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-telegram {
+            background: #FFCA0E;
+            color: #000;
+        }
+        .btn-telegram:hover {
+            background: #e6b50a;
+        }
+        .btn-bot {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+        .btn-bot:hover {
+            background: rgba(255,255,255,0.15);
+        }
 
-    .chart-area { margin-top: 0.2rem; }
-    .chart-grid {
-      display: flex;
-      gap: 0.2rem;
-      align-items: flex-end;
-      height: 160px;
-      margin-bottom: 0.8rem;
-      border-bottom: 1px solid #232a35;
-      padding-bottom: 0.5rem;
-    }
-    .bar {
-      flex: 1;
-      background: #2b3342;
-      height: 40px;
-      border-radius: 6px 6px 0 0;
-      min-width: 8px;
-    }
-    .bar:nth-child(1) { height: 110px; background: #f0b90b; }
-    .bar:nth-child(2) { height: 80px; }
-    .bar:nth-child(3) { height: 130px; background: #f0b90b; }
-    .bar:nth-child(4) { height: 100px; }
-    .bar:nth-child(5) { height: 140px; background: #f0b90b; }
-    .bar:nth-child(6) { height: 60px; }
-    .bar:nth-child(7) { height: 120px; background: #f0b90b; }
-    .bar:nth-child(8) { height: 95px; }
-    .bar:nth-child(9) { height: 150px; background: #f0b90b; }
-    .bar:nth-child(10) { height: 70px; }
-    .bar:nth-child(11) { height: 115px; background: #f0b90b; }
-    .bar:nth-child(12) { height: 85px; }
-    .bar:nth-child(13) { height: 135px; background: #f0b90b; }
-    .bar:nth-child(14) { height: 50px; }
-    .bar:nth-child(15) { height: 125px; background: #f0b90b; }
-    .bar:nth-child(16) { height: 105px; }
-    .bar:nth-child(17) { height: 145px; background: #f0b90b; }
-    .bar:nth-child(18) { height: 90px; }
-    .bar:nth-child(19) { height: 155px; background: #f0b90b; }
-    .bar:nth-child(20) { height: 65px; }
-
-    .axis-labels {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.7rem;
-      color: #6e778b;
-      margin-top: 0.25rem;
-    }
-    .axis-labels .x { display: flex; gap: 0.8rem; }
-    .axis-labels .y { font-family: 'Inter', monospace; }
-
-    .price-ticker {
-      margin-top: 1rem;
-      background: #0b0e14;
-      border-radius: 40px;
-      padding: 0.6rem 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.2rem 0.6rem;
-      border: 1px solid #202631;
-      font-size: 0.65rem;
-      color: #828ba3;
-      max-height: 60px;
-      overflow-y: auto;
-      font-family: 'Inter', monospace;
-    }
-    .price-ticker .highlight { color: #d4dcee; }
-    .price-ticker::-webkit-scrollbar { height: 3px; background: #1f2532; }
-    .price-ticker::-webkit-scrollbar-thumb { background: #3f475b; border-radius: 10px; }
-
-    /* --- AML WIDGET (Crystal style) --- */
-    .aml-widget {
-      background: #0f1219;
-      border-radius: 28px;
-      padding: 1.5rem 1.5rem 1.8rem;
-      border: 1px solid #252b36;
-      display: flex;
-      flex-direction: column;
-    }
-    .aml-widget h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #f0b90b;
-      margin-bottom: 0.3rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .aml-widget .subtitle {
-      font-size: 0.75rem;
-      color: #7e879e;
-      margin-bottom: 1.2rem;
-      border-bottom: 1px solid #232a35;
-      padding-bottom: 0.8rem;
-    }
-    .aml-input-group {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1.2rem;
-    }
-    .aml-input-group input {
-      flex: 1;
-      background: #1a1f29;
-      border: 1px solid #2f3645;
-      border-radius: 40px;
-      padding: 0.65rem 1rem;
-      font-size: 0.8rem;
-      color: #eef2f6;
-      outline: none;
-      font-family: 'Inter', monospace;
-    }
-    .aml-input-group input::placeholder { color: #5e677e; }
-    .aml-input-group input:focus { border-color: #f0b90b; }
-    .aml-btn {
-      background: #f0b90b;
-      border: none;
-      border-radius: 40px;
-      padding: 0 1.4rem;
-      font-weight: 600;
-      font-size: 0.8rem;
-      color: #0b0d11;
-      cursor: pointer;
-      transition: 0.2s;
-      white-space: nowrap;
-    }
-    .aml-btn:hover { background: #f9c93a; }
-
-    .risk-panel {
-      background: #0b0e14;
-      border-radius: 20px;
-      padding: 1rem;
-      border: 1px solid #202631;
-      margin-top: 0.2rem;
-    }
-    .risk-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.8rem;
-      padding: 0.4rem 0;
-      border-bottom: 1px solid #1a1f29;
-    }
-    .risk-row:last-child { border-bottom: none; }
-    .risk-label { color: #9aa2b5; }
-    .risk-value { font-weight: 500; color: #eef2f6; }
-    .risk-score-big {
-      font-size: 2rem;
-      font-weight: 700;
-      text-align: center;
-      padding: 0.4rem 0;
-      color: #f0b90b;
-    }
-    .risk-score-big span { font-size: 1rem; font-weight: 400; color: #6e778b; }
-
-    .status-badge {
-      display: inline-block;
-      padding: 0.2rem 0.7rem;
-      border-radius: 40px;
-      font-size: 0.7rem;
-      font-weight: 600;
-    }
-    .status-clean { background: #1a3a2a; color: #6fcf97; }
-    .status-warn { background: #3a2f1a; color: #f2c94c; }
-    .status-critical { background: #3a1a1a; color: #f28b8b; }
-
-    .scan-status {
-      font-size: 0.75rem;
-      color: #6e778b;
-      margin-top: 0.8rem;
-      text-align: center;
-    }
-
-    /* --- FOOTER --- */
-    .dex-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 1.8rem;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      border-top: 1px solid #232a35;
-      padding-top: 1.5rem;
-    }
-    .dex-footer .badge {
-      background: #1b212b;
-      padding: 0.3rem 1rem;
-      border-radius: 40px;
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: #a4aec7;
-      border: 1px solid #2f3645;
-    }
-    .dex-footer .badge i { margin-right: 0.4rem; color: #f0b90b; }
-    .dex-footer .powered { color: #616b82; font-size: 0.7rem; }
-
-    /* --- RESPONSIVE --- */
-    @media (max-width: 1000px) {
-      .main-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 700px) {
-      .app { padding: 1.25rem; }
-      .nav-left { gap: 1rem; flex-wrap: wrap; }
-      .nav-links { gap: 1rem; flex-wrap: wrap; }
-      .chart-header { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
-      .price { font-size: 1.4rem; }
-    }
-  </style>
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .nav {
+                justify-content: center;
+                gap: 12px;
+            }
+            .nav a {
+                font-size: 12px;
+            }
+            .header-actions {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .intro h1 {
+                font-size: 28px;
+            }
+            .intro h3 {
+                font-size: 18px;
+            }
+            .calculator {
+                padding: 20px;
+            }
+            .calc-row {
+                flex-direction: column;
+            }
+            .calc-row select,
+            .calc-row input {
+                min-width: 100%;
+            }
+            .calc-arrow {
+                transform: rotate(90deg);
+            }
+        }
+        @media (max-width: 480px) {
+            .intro h1 {
+                font-size: 22px;
+            }
+            .news-item .title {
+                font-size: 15px;
+            }
+            .lang-switcher {
+                font-size: 11px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="app">
-  <!-- NAV -->
-  <div class="nav">
-    <div class="nav-left">
-      <div class="logo">1inch</div>
-      <div class="nav-links">
-        <span>Exchange</span><span>DAO</span><span>API</span>
-        <span>Blog</span><span>Help</span>
-        <span class="buy-eth"><i class="fas fa-arrow-up" style="margin-right: 5px;"></i> Buy ETH</span>
-      </div>
-    </div>
-    <div class="nav-right">
-      <i class="fas fa-globe"></i>
-      <i class="fas fa-user-circle"></i>
-    </div>
-  </div>
-
-  <!-- HERO -->
-  <div class="hero">
-    <h1>LEADING DEX AGGREGATOR · AML CRYSTAL</h1>
-    <div class="sub">1inch offers the best rates · AML Crystal scans any TRC20 address for sanctions &amp; risk.</div>
-  </div>
-
-  <!-- MAIN GRID: Chart + AML Widget -->
-  <div class="main-grid">
-    <!-- LEFT: CHART (1inch style) -->
-    <div class="chart-container">
-      <div class="chart-header">
-        <div class="pair-price">
-          <span class="pair">DAI / ETH</span>
-          <span class="price">1333.26</span>
-          <span class="change">-5.12%</span>
+    <!-- ===== HEADER ===== -->
+    <header class="header container">
+        <div class="logo">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40'%3E%3Ctext x='0' y='28' font-size='24' font-weight='700' fill='%23FFCA0E'%3EObmenAT24%3C/text%3E%3C/svg%3E" alt="ObmenAT24" height="40">
         </div>
-        <div class="time-tabs">
-          <span>1h</span><span>1d</span><span>1w</span>
-          <span class="active">1m</span><span>1y</span><span>All Time</span>
+        <nav class="nav">
+            <a href="#">Exchange</a>
+            <a href="#">Company</a>
+            <a href="#">Precious metals</a>
+            <a href="#">Partners</a>
+            <a href="#">Blog</a>
+            <a href="#">Promotions</a>
+            <a href="#">Contacts</a>
+        </nav>
+        <div class="header-actions">
+            <button class="btn-exchange">Exchange</button>
+            <div class="lang-switcher">
+                <a href="#">ukr</a>
+                <a href="#" class="active">eng</a>
+                <a href="#">rus</a>
+            </div>
         </div>
-      </div>
+    </header>
 
-      <div class="chart-area">
-        <div class="chart-grid">
-          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-          <div class="bar"></div><div class="bar"></div>
+    <!-- ===== INTRO ===== -->
+    <section class="intro">
+        <video class="intro-bg-video" muted loop autoplay playsinline>
+            <source src="data:video/mp4;base64,AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDEAAAAIZnJlZQAAAQxtZGF0AAAAMgAAACh3cnZrbG9n" type="video/mp4">
+        </video>
+        <div class="container intro-content">
+            <div class="intro-grid">
+                <div>
+                    <h1>Cryptocurrency exchange <span>in Milan</span></h1>
+                    <h3>We exchange cryptocurrencies for profitable reality</h3>
+                    <div class="bottom-buttons">
+                        <button class="btn btn-telegram">📱 Subscribe for rate updates</button>
+                        <button class="btn btn-bot">🤖 Crypto Bot</button>
+                        <button class="btn btn-bot">💳 E-money Bot</button>
+                    </div>
+                </div>
+                <div class="calculator">
+                    <div class="calc-tabs">
+                        <div class="calc-tab active">Exchange</div>
+                        <div class="calc-tab">Buy</div>
+                        <div class="calc-tab">Sell</div>
+                        <div class="calc-tab">Transfer</div>
+                    </div>
+                    <div class="calc-row">
+                        <select>
+                            <option>Bitcoin (BTC)</option>
+                            <option>Ethereum (ETH)</option>
+                            <option>Tether (USDT)</option>
+                        </select>
+                        <input type="number" placeholder="0.00" value="1.0">
+                    </div>
+                    <div class="calc-arrow">⬇</div>
+                    <div class="calc-row">
+                        <select>
+                            <option>USDT (TRC20)</option>
+                            <option>USD</option>
+                            <option>EUR</option>
+                        </select>
+                        <input type="number" placeholder="0.00" value="95.00">
+                    </div>
+                    <button class="btn-submit">Exchange now</button>
+                </div>
+            </div>
         </div>
-        <div class="axis-labels">
-          <div class="x"><span>06:16</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span></div>
-          <div class="y"><span>1400</span> <span>1300</span> <span>1200</span> <span>1100</span></div>
+    </section>
+
+    <!-- ===== NEWS ===== -->
+    <section class="news-section">
+        <div class="container">
+            <h2 class="news-title">📰 Latest news</h2>
+            <div class="news-slider">
+                <div class="news-track" id="newsTrack">
+                    <div class="news-item">
+                        <div class="date">6/22/2026</div>
+                        <div class="title">Ukraine has appointed the main regulator of the crypto market. Tether is abandoning its "gold" stablecoin. Payoneer will be sold by 2027.</div>
+                    </div>
+                    <div class="news-item">
+                        <div class="date">6/9/2026</div>
+                        <div class="title">Wise gets caught up in an AML scandal. Mastercard expands support for stablecoins. Revolut's co-founder steps down as CTO.</div>
+                    </div>
+                    <div class="news-item">
+                        <div class="date">4/20/2026</div>
+                        <div class="title">Bitcoin's price has resumed its growth. Tether has launched a crypto wallet. Japan is tightening control over crypto.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="news-dots" id="newsDots">
+                <span class="news-dot active" data-index="0"></span>
+                <span class="news-dot" data-index="1"></span>
+                <span class="news-dot" data-index="2"></span>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <!-- Price ticker -->
-      <div class="price-ticker">
-        <span>1333.262609238702</span><span>1333.262609238703</span>
-        <span>1333.262609238704</span><span>1333.262609238705</span>
-        <span>1333.262609238706</span><span>1333.262609238707</span>
-        <span>1333.262609238708</span><span>1333.262609238709</span>
-        <span>1333.262609238710</span><span>1333.262609238711</span>
-        <span>1333.262609238712</span><span>1333.262609238713</span>
-        <span>1333.262609238714</span><span>1333.262609238715</span>
-        <span>1333.262609238716</span><span>1333.262609238717</span>
-        <span>1333.262609238718</span><span>1333.262609238719</span>
-        <span>1333.262609238720</span><span>1333.262609238721</span>
-        <span>1333.262609238722</span><span>1333.262609238723</span>
-        <span>1333.262609238724</span><span>1333.262609238725</span>
-        <span>1333.262609238726</span><span>1333.262609238727</span>
-        <span>1333.262609238728</span><span>1333.262609238729</span>
-        <span>1333.262609238730</span><span>1333.262609238731</span>
-        <span>1333.262609238732</span><span>1333.262609238733</span>
-        <span>1333.262609238734</span><span>1333.262609238735</span>
-        <span>1333.262609238736</span><span>1333.262609238737</span>
-        <span>1333.262609238738</span><span>1333.262609238739</span>
-        <span>1333.262609238740</span><span>1333.262609238741</span>
-        <span>1333.262609238742</span><span>1333.262609238743</span>
-        <span>1333.262609238744</span><span>1333.262609238745</span>
-        <span>1333.262609238746</span><span>1333.262609238747</span>
-        <span>1333.262609238748</span><span>1333.262609238749</span>
-        <span>1333.262609238750</span><span>1333.262609238751</span>
-        <span>1333.262609238752</span><span>1333.262609238753</span>
-        <span>1333.262609238754</span><span>1333.262609238755</span>
-        <span>1333.262609238756</span><span>1333.262609238757</span>
-        <span>1333.262609238758</span><span>1333.262609238759</span>
-        <span>1333.262609238760</span><span>1333.262609238761</span>
-        <span>1333.262609238762</span><span>1333.262609238763</span>
-        <span>1333.262609238764</span><span>1333.262609238765</span>
-        <span>1333.262609238766</span><span>1333.262609238767</span>
-        <span>1333.262609238768</span><span>1333.262609238769</span>
-        <span>1333.262609238770</span><span>1333.262609238771</span>
-        <span>1333.262609238772</span><span>1333.262609238773</span>
-        <span>1333.262609238774</span><span>1333.262609238775</span>
-        <span>1333.262609238776</span><span>1333.262609238777</span>
-        <span>1333.262609238778</span><span>1333.262609238779</span>
-        <span>1333.262609238780</span><span>1333.262609238781</span>
-        <span>1333.262609238782</span><span>1333.262609238783</span>
-        <span>1333.262609238784</span><span>1333.262609238785</span>
-        <span>1333.262609238786</span><span>1333.262609238787</span>
-        <span>1333.262609238788</span><span>1333.262609238789</span>
-        <span>1333.262609238790</span><span>1333.262609238791</span>
-        <span>1333.262609238792</span><span>1333.262609238793</span>
-        <span>1333.262609238794</span><span>1333.262609238795</span>
-        <span>1333.262609238796</span><span>1333.262609238797</span>
-        <span>1333.262609238798</span><span>1333.262609238799</span>
-        <span>1333.262609238800</span><span>1333.262609238801</span>
-        <span>1333.262609238802</span><span>1333.262609238803</span>
-        <span>1333.262609238804</span><span>1333.262609238805</span>
-        <span>1333.262609238806</span><span>1333.262609238807</span>
-        <span>1333.262609238808</span><span>1333.262609238809</span>
-        <span>1333.262609238810</span><span>1333.262609238811</span>
-        <span>1333.262609238812</span><span>1333.262609238813</span>
-        <span>1333.262609238814</span><span>1333.262609238815</span>
-        <span>1333.262609238816</span><span>1333.262609238817</span>
-        <span>1333.262609238818</span><span>1333.262609238819</span>
-        <span>1333.262609238820</span><span>1333.262609238821</span>
-        <span>1333.262609238822</span><span>1333.262609238823</span>
-        <span>1333.262609238824</span><span>1333.262609238825</span>
-        <span>1333.262609238826</span><span>1333.262609238827</span>
-        <span>1333.262609238828</span><span>1333.262609238829</span>
-        <span>1333.262609238830</span><span>1333.262609238831</span>
-        <span>1333.262609238832</span><span>1333.262609238833</span>
-        <span>1333.262609238834</span><span>1333.262609238835</span>
-        <span>1333.262609238836</span><span>1333.262609238837</span>
-        <span>1333.262609238838</span><span>1333.262609238839</span>
-        <span>1333.262609238840</span><span>1333.262609238841</span>
-        <span>1333.262609238842</span><span>1333.262609238843</span>
-        <span>1333.262609238844</span><span>1333.262609238845</span>
-        <span>1333.262609238846</span><span>1333.262609238847</span>
-        <span>1333.262609238848</span><span>1333.262609238849</span>
-        <span>1333.262609238850</span><span>1333.262609238851</span>
-        <span>1333.262609238852</span><span>1333.262609238853</span>
-        <span>1333.262609238854</span><span>1333.262609238855</span>
-        <span>1333.262609238856</span><span>1333.262609238857</span>
-        <span>1333.262609238858</span><span>1333.262609238859</span>
-        <span>1333.262609238860</span><span>1333.262609238861</span>
-        <span>1333.262609238862</span><span>1333.262609238863</span>
-        <span>1333.262609238864</span><span>1333.262609238865</span>
-        <span>1333.262609238866</span><span>1333.262609238867</span>
-        <span>1333.262609238868</span><span>1333.262609238869</span>
-        <span>1333.262609238870</span><span>1333.262609238871</span>
-        <span>1333.262609238872</span><span>1333.262609238873</span>
-        <span>1333.262609238874</span><span>1333.262609238875</span>
-        <span>1333.262609238876</span><span>1333.262609238877</span>
-        <span>1333.262609238878</span><span>1333.262609238879</span>
-        <span>1333.262609238880</span><span>1333.262609238881</span>
-        <span>1333.262609238882</span><span>1333.262609238883</span>
-        <span>1333.262609238884</span><span>1333.262609238885</span>
-        <span>1333.262609238886</span><span>1333.262609238887</span>
-        <span>1333.262609238888</span><span>1333.262609238889</span>
-        <span>1333.262609238890</span><span>1333.262609238891</span>
-        <span>1333.262609238892</span><span>1333.262609238893</span>
-        <span>1333.262609238894</span><span>1333.262609238895</span>
-        <span>1333.262609238896</span><span>1333.262609238897</span>
-        <span>1333.262609238898</span><span>1333.262609238899</span>
-        <span>1333.262609238900</span><span>1333.262609238901</span>
-        <span>1333.262609238902</span><span>1333.262609238903</span>
-        <span>1333.262609238904</span><span>1333.262609238905</span>
-        <span>1333.262609238906</span><span>1333.262609238907</span>
-        <span>1333.262609238908</span><span>1333.262609238909</span>
-        <span>1333.262609238910</span><span>1333.262609238911</span>
-        <span>1333.262609238912</span><span>1333.262609238913</span>
-        <span>1333.262609238914</span><span>1333.262609238915</span>
-        <span>1333.262609238916</span><span>1333.262609238917</span>
-        <span>1333.262609238918</span><span>1333.262609238919</span>
-        <span>1333.262609238920</span><span>1333.262609238921</span>
-        <span>1333.262609238922</span><span>1333.262609238923</span>
-        <span>1333.262609238924</span><span>1333.262609238925</span>
-        <span>1333.262609238926</span><span>1333.262609238927</span>
-        <span>1333.262609238928</span><span>1333.262609238929</span>
-        <span>1333.262609238930</span><span>1333.262609238931</span>
-        <span>1333.262609238932</span><span>1333.262609238933</span>
-        <span>1333.262609238934</span><span>1333.262609238935</span>
-        <span>1333.262609238936</span><span>1333.262609238937</span>
-        <span>1333.262609238938</span><span>1333.262609238939</span>
-        <span>1333.262609238940</span><span>1333.262609238941</span>
-        <span>1333.262609238942</span><span>1333.262609238943</span>
-        <span>1333.262609238944</span><span>1333.262609238945</span>
-        <span>1333.262609238946</span><span>1333.262609238947</span>
-        <span>1333.262609238948</span><span>1333.262609238949</span>
-        <span>1333.262609238950</span><span>1333.262609238951</span>
-        <span>1333.262609238952</span><span>1333.262609238953</span>
-        <span>1333.262609238954</span><span>1333.262609238955</span>
-        <span>1333.262609238956</span><span>1333.262609238957</span>
-        <span>1333.262609238958</span><span>1333.262609238959</span>
-        <span>1333.262609238960</span><span>1333.262609238961</span>
-        <span>1333.262609238962</span><span>1333.262609238963</span>
-        <span>1333.262609238964</span><span>1333.262609238965</span>
-        <span>1333.262609238966</span><span>1333.262609238967</span>
-        <span>1333.262609238968</span><span>1333.262609238969</span>
-        <span>1333.262609238970</span><span>1333.262609238971</span>
-        <span>1333.262609238972</span><span>1333.262609238973</span>
-        <span>1333.262609238974</span><span>1333.262609238975</span>
-        <span>1333.262609238976</span><span>1333.262609238977</span>
-        <span>1333.262609238978</span><span>1333.262609238979</span>
-        <span>1333.262609238980</span><span>1333.262609238981</span>
-        <span>1333.262609238982</span><span>1333.262609238983</span>
-        <span>1333.262609238984</span><span>1333.262609238985</span>
-        <span>1333.262609238986</span><span>1333.262609238987</span>
-        <span>1333.262609238988</span><span>1333.262609238989</span>
-        <span>1333.262609238990</span><span class="highlight">1333</span>
-      </div>
-    </div>
+    <!-- ===== CONTENT ===== -->
+    <section class="content-text">
+        <div class="container">
+            <h2>Cryptocurrency exchange in Milan</h2>
+            <p>The owners of cryptocurrency periodically face the need to exchange electronic assets among themselves or transfer them into Euro. The point of such a procedure is simple enough, but finding a reliable platform that ensures anonymity and safety of deals is a rather time-consuming process.</p>
+            <p>The ObmenAT24 service can make life easier for crypto owners in any part of the world. By using this cryptocurrency exchanger in Milan and other cities around the world, including Ukraine, you can in a short period of time, securely, and profitably exchange cryptocurrency.</p>
 
-    <!-- RIGHT: AML CRYSTAL WIDGET -->
-    <div class="aml-widget">
-      <h3><i class="fas fa-shield-alt"></i> AML Crystal</h3>
-      <div class="subtitle">TRON · TRC20 Risk Scanner</div>
+            <h2>Best cryptocurrency exchange: Milan</h2>
+            <p>Our service offers you the best conditions for cryptocurrency exchange in Milan. We guarantee 100% exchange security, large reserves, and low fees.</p>
 
-      <div class="aml-input-group">
-        <input type="text" id="amlAddress" placeholder="Enter TRON address (T...)" value="TQm9XgHfJkLpN4sW2rYv7cDz3uEaFbGcHd">
-        <button class="aml-btn" id="scanBtn"><i class="fas fa-search"></i> Scan</button>
-      </div>
+            <h2>What types of crypto exchanges are possible</h2>
+            <p>ObmenAT24 is a crypto exchange in Milan where you can convert:</p>
+            <ul>
+                <li><strong>One kind of cryptocurrency to another</strong> — to do this, you select the exchange pair of interest and fill in the blank fields.</li>
+                <li><strong>Crypto to Tether</strong> — specify the coin and choose the currency you would like to receive. You can transfer fiat money to your wallet or card or, if you choose this option, get cash in Milan in one of the partner offices.</li>
+                <li><strong>Tether to crypto</strong> — the process opposite of the one described above, allowing anyone to become a crypto owner. At the same time, it is crucial to have a reasonable amount of fiat to purchase the crypto of interest.</li>
+            </ul>
+            <p>It will take a few minutes to complete the application process. The absence of mandatory registration is one of the main reasons.</p>
+        </div>
+    </section>
 
-      <div class="risk-panel" id="riskPanel">
-        <div class="risk-score-big" id="riskScore">— <span>/ 100</span></div>
-        <div class="risk-row"><span class="risk-label">Sanctions</span><span class="risk-value" id="sanctionsStatus">—</span></div>
-        <div class="risk-row"><span class="risk-label">Mixer Exposure</span><span class="risk-value" id="mixerExposure">—</span></div>
-        <div class="risk-row"><span class="risk-label">Darknet Market</span><span class="risk-value" id="darknetStatus">—</span></div>
-        <div class="risk-row"><span class="risk-label">Exchange KYC</span><span class="risk-value" id="exchangeKyc">—</span></div>
-        <div class="risk-row"><span class="risk-label">Fund Source</span><span class="risk-value" id="fundSource">—</span></div>
-      </div>
+    <!-- ===== FOOTER ===== -->
+    <footer style="padding:30px 0;border-top:1px solid rgba(255,255,255,0.05);margin-top:20px;">
+        <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:15px;font-size:14px;color:#666;">
+            <span>© 2026 ObmenAT24 — Cryptocurrency exchange</span>
+            <span>📍 Milan, Italy</span>
+        </div>
+    </footer>
 
-      <div class="scan-status" id="scanStatus"><i class="fas fa-circle" style="color: #6fcf97; font-size: 0.5rem;"></i> Live · TRON OFAC</div>
-    </div>
-  </div>
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // === NEWS SLIDER ===
+        const track = document.getElementById('newsTrack');
+        const dots = document.querySelectorAll('.news-dot');
+        let currentSlide = 0;
+        const totalSlides = dots.length;
 
-  <!-- FOOTER -->
-  <div class="dex-footer">
-    <div class="badge"><i class="fas fa-bolt"></i> 1inch · AML Crystal</div>
-    <div class="powered"><i class="fas fa-circle"></i> aggregated · crystal-clear AML</div>
-  </div>
-</div>
-
-<script>
-  (function() {
-    const scanBtn = document.getElementById('scanBtn');
-    const addressInput = document.getElementById('amlAddress');
-    const riskScoreEl = document.getElementById('riskScore');
-    const sanctionsEl = document.getElementById('sanctionsStatus');
-    const mixerEl = document.getElementById('mixerExposure');
-    const darknetEl = document.getElementById('darknetStatus');
-    const exchangeKycEl = document.getElementById('exchangeKyc');
-    const fundSourceEl = document.getElementById('fundSource');
-    const scanStatus = document.getElementById('scanStatus');
-
-    // Simulated AML scan — mimics Crystal logic with randomized but realistic data
-    function runAMLCrystalScan(address) {
-      // Show scanning status
-      scanStatus.innerHTML = '<i class="fas fa-spinner fa-pulse" style="color: #f0b90b;"></i> Scanning TRON blockchain...';
-      
-      // Simulate network delay
-      setTimeout(() => {
-        // Generate deterministic but varied results based on address hash
-        let hash = 0;
-        for (let i = 0; i < address.length; i++) {
-          hash = (hash << 5) - hash + address.charCodeAt(i);
-          hash |= 0;
-        }
-        const seed = Math.abs(hash) % 100;
-        
-        // Risk score 0-100
-        let riskScore = 0;
-        let sanctions = 'Clean';
-        let mixer = '0%';
-        let darknet = 'No';
-        let kyc = 'Verified';
-        let fund = 'Clean Exchange';
-
-        // Sanctions: 15% chance of match
-        if (seed < 15) {
-          sanctions = '⚠️ OFAC Match';
-          riskScore += 45;
-        } else if (seed < 30) {
-          sanctions = '⚠️ EU Sanctions';
-          riskScore += 35;
-        } else {
-          sanctions = '✅ Clean';
+        function goToSlide(index) {
+            if (index < 0) index = totalSlides - 1;
+            if (index >= totalSlides) index = 0;
+            currentSlide = index;
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
         }
 
-        // Mixer exposure: 0-30%
-        const mixerPercent = (seed % 31);
-        mixer = mixerPercent + '%';
-        if (mixerPercent > 20) riskScore += 25;
-        else if (mixerPercent > 10) riskScore += 12;
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => goToSlide(i));
+        });
 
-        // Darknet: 10% chance
-        if (seed > 85) {
-          darknet = '⚠️ Detected';
-          riskScore += 30;
-        } else {
-          darknet = '✅ No';
-        }
+        // Auto-slide every 6 seconds
+        setInterval(() => {
+            goToSlide(currentSlide + 1);
+        }, 6000);
 
-        // Exchange KYC: based on seed
-        if (seed < 20) {
-          kyc = 'No-KYC';
-          riskScore += 15;
-        } else if (seed < 40) {
-          kyc = 'Partial';
-          riskScore += 5;
-        } else {
-          kyc = 'Verified';
-        }
+        // === CALCULATOR TABS ===
+        document.querySelectorAll('.calc-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
 
-        // Fund source breakdown
-        const fundOptions = ['Clean Exchange', 'P2P / OTC', 'Unknown', 'High Risk'];
-        const fundIndex = (seed % 4);
-        fund = fundOptions[fundIndex];
-        if (fundIndex === 3) riskScore += 20;
-        else if (fundIndex === 2) riskScore += 10;
-        else if (fundIndex === 1) riskScore += 5;
+        // === EXCHANGE BUTTON ===
+        document.querySelector('.btn-submit').addEventListener('click', function() {
+            alert('⚠️ This is a demo version.\nThe full exchange functionality is available on the live site.\n\n✅ Your design has been fully restored!');
+        });
 
-        // Clamp risk score 0-100
-        riskScore = Math.min(100, Math.max(0, riskScore));
-
-        // Update UI
-        riskScoreEl.innerHTML = `${riskScore} <span>/ 100</span>`;
-        sanctionsEl.textContent = sanctions;
-        mixerEl.textContent = mixer;
-        darknetEl.textContent = darknet;
-        exchangeKycEl.textContent = kyc;
-        fundSourceEl.textContent = fund;
-
-        // Color code risk
-        const riskColor = riskScore < 30 ? '#6fcf97' : (riskScore < 60 ? '#f2c94c' : '#f28b8b');
-        riskScoreEl.style.color = riskColor;
-
-        scanStatus.innerHTML = `<i class="fas fa-check-circle" style="color: #6fcf97;"></i> Scan complete · ${new Date().toLocaleTimeString()}`;
-      }, 800);
-    }
-
-    // Initial scan with default address
-    window.addEventListener('DOMContentLoaded', () => {
-      const defaultAddr = addressInput.value.trim();
-      if (defaultAddr) runAMLCrystalScan(defaultAddr);
-    });
-
-    // Scan button handler
-    scanBtn.addEventListener('click', () => {
-      const addr = addressInput.value.trim();
-      if (!addr || addr.length < 10) {
-        alert('Please enter a valid TRON address (starts with T)');
-        return;
-      }
-      runAMLCrystalScan(addr);
-    });
-
-    // Enter key support
-    addressInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') scanBtn.click();
-    });
-
-  })();
-</script>
+        console.log('🎯 ObmenAT24 design successfully restored!');
+        console.log('📌 Next steps:');
+        console.log('  1. Replace placeholder images');
+        console.log('  2. Add real exchange logic');
+        console.log('  3. Connect payment systems');
+        console.log('  4. Deploy to hosting');
+    </script>
 
 </body>
 </html>
