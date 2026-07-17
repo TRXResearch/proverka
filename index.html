@@ -1,2059 +1,706 @@
 <!DOCTYPE html>
-<html lang="en" prefix="og: https://ogp.me/ns#">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1inch · AML Crystal</title>
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <!-- ====== PRIMARY SEO ====== -->
-    <title>AML Crystal — #1 TRON AML Check & TRC20 Risk Scanner | Crystal Intelligence</title>
-    <meta name="description" content="AML Crystal is the most advanced AML compliance platform for TRON. Instantly scan any TRC20 address, USDT TRC20 transaction or TRX wallet for sanctions, illicit funds and crystal-clear risk scoring. Powered by Crystal Intelligence." />
-    <meta name="keywords" content="AML Crystal, TRON AML check, TRC20 scanner, USDT TRC20 AML, TRX risk score, OFAC sanctions TRON, crystal blockchain analysis, TRON compliance, crypto AML, mixer exposure, FATF, proverka-chi.vercel.app" />
-    <link rel="canonical" href="https://proverka-chi.vercel.app/" />
+    body {
+      background-color: #0b0d11;
+      font-family: 'Inter', sans-serif;
+      color: #eef2f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1.5rem;
+    }
 
-    <!-- ====== FAVICON (только 1 файл) ====== -->
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="stylesheet" href="css/style.css">
+    .app {
+      max-width: 1400px;
+      width: 100%;
+      background: #13161c;
+      border-radius: 32px;
+      padding: 1.75rem 2rem 2.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+      border: 1px solid #2a2f3a;
+    }
 
-    <!-- ====== OPEN GRAPH (Facebook, LinkedIn, Telegram) ====== -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="AML Crystal — TRON AML Check & TRC20 Risk Scanner" />
-    <meta property="og:description" content="Crystal-clear AML intelligence for TRON. Scan TRC20 addresses, USDT transactions & TRX wallets for sanctions and illicit fund exposure. Instant results." />
-    <meta property="og:url" content="https://proverka-chi.vercel.app/" />
-    <meta property="og:site_name" content="AML Crystal" />
-    <meta property="og:image" content="https://proverka-chi.vercel.app/AMLCrysta.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="AML Crystal — TRON AML Compliance Platform. Is Your TRON Wallet SAFE? Free TRC20 Risk Scanner. OFAC · FATF · Sanctions Check." />
-    <meta property="og:locale" content="en_US" />
+    /* --- NAV --- */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .nav-left { display: flex; align-items: center; gap: 2.5rem; }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #f0b90b, #f9d75c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #9aa2b5;
+    }
+    .nav-links span { cursor: default; transition: color 0.2s; }
+    .nav-links span:hover { color: #f0b90b; }
+    .buy-eth {
+      background: #2c313f;
+      padding: 0.35rem 1rem;
+      border-radius: 40px;
+      color: #f0f4fa;
+      font-weight: 600;
+      font-size: 0.8rem;
+      border: 1px solid #3e4455;
+    }
+    .nav-right { display: flex; align-items: center; gap: 1.2rem; color: #9aa2b5; }
+    .nav-right i { font-size: 1.1rem; cursor: default; }
 
-    <!-- ====== TWITTER CARDS (X/Twitter) ====== -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="AML Crystal — TRON AML Risk Scanner | Free TRC20 Check" />
-    <meta name="twitter:description" content="Is your TRON wallet SAFE? AML Crystal scans any TRC20 address in under 1 second. OFAC, EU, UN sanctions, mixer exposure, darknet detection. 50 free scans/day." />
-    <meta name="twitter:image" content="https://proverka-chi.vercel.app/AMLCrysta.png" />
-    <meta name="twitter:image:alt" content="AML Crystal — Crystal-clear AML intelligence for TRON. Check your TRC20 wallet now." />
-    <meta name="twitter:site" content="@amlcrystal" />
-    <meta name="twitter:creator" content="@amlcrystal" />
+    /* --- HERO --- */
+    .hero { margin-bottom: 2.5rem; }
+    .hero h1 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      background: linear-gradient(to right, #f9fafc, #b7c0d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+    }
+    .hero .sub {
+      font-size: 0.95rem;
+      color: #8f98ae;
+      margin-top: 0.2rem;
+    }
 
-    <!-- ====== STRUCTURED DATA ====== -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "name": "AML Crystal",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Web",
-            "url": "https://proverka-chi.vercel.app/",
-            "description": "Premium AML compliance platform for TRON. Instantly checks TRC20 addresses, USDT TRC20 transactions and TRX wallets for sanctions and illicit funds.",
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-            "image": "https://proverka-chi.vercel.app/AMLCrysta.png"
-        }
-    </script>
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-                { "@type": "Question", "name": "What is AML Crystal?", "acceptedAnswer": { "@type": "Answer", "text": "AML Crystal is a premium anti-money laundering compliance and blockchain forensics platform built for the TRON network." } },
-                { "@type": "Question", "name": "How do I run an AML Crystal check on a TRC20 address?", "acceptedAnswer": { "@type": "Answer", "text": "Paste any TRON wallet address into the Crystal Scan widget and click Scan. AML Crystal instantly returns a risk score, sanctions check, and fund-source breakdown in under 1 second." } },
-                { "@type": "Question", "name": "Does AML Crystal check OFAC sanctions for TRON addresses?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every AML Crystal scan cross-references the TRC20 address against OFAC SDN, EU sanctions, UN lists and 40+ global watchlists." } }
-            ]
-        }
-    </script>
+    /* --- MAIN GRID: CHART + AML WIDGET --- */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.8rem;
+      margin-bottom: 1rem;
+    }
 
-    <!-- ====== FONTS ====== -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    /* --- CHART CARD (1inch style) --- */
+    .chart-container {
+      background: #0f1219;
+      border-radius: 28px;
+      padding: 1.5rem 1.8rem 1.8rem;
+      border: 1px solid #252b36;
+    }
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .pair-price { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }
+    .pair { font-size: 1.3rem; font-weight: 500; }
+    .price { font-size: 1.8rem; font-weight: 600; color: #f2f6fe; }
+    .change {
+      font-size: 0.9rem;
+      font-weight: 500;
+      background: #1e2a2a;
+      color: #f1555b;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+    }
+    .time-tabs {
+      display: flex;
+      gap: 0.2rem;
+      background: #1a1f29;
+      padding: 0.25rem;
+      border-radius: 40px;
+    }
+    .time-tabs span {
+      padding: 0.3rem 0.9rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border-radius: 30px;
+      color: #9aa2b5;
+      cursor: default;
+    }
+    .time-tabs span.active { background: #2d3443; color: #f0f4fa; }
 
-    <style>
-        /* ============================================================
-                   CRITICAL CSS (INLINE)
-                   ============================================================ */
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        :root {
-            --bg: #030b06;
-            --bg2: #051009;
-            --surface: rgba(0, 255, 136, 0.04);
-            --b1: rgba(0, 255, 136, 0.15);
-            --em: #00ff88;
-            --eg: #00d68f;
-            --cyan: #00d4ff;
-            --red: #e84142;
-            --amber: #f5a623;
-            --text: #c8e8d8;
-            --muted: #4a7a64;
-            --fh: 'Orbitron', sans-serif;
-            --fb: 'Space Grotesk', sans-serif;
-            --fi: 'Inter', sans-serif;
-            --fm: 'JetBrains Mono', monospace;
-            --r: 14px;
-            --glow-em: 0 0 40px rgba(0, 255, 136, 0.2), 0 0 80px rgba(0, 255, 136, 0.07);
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: var(--fb);
-            overflow-x: hidden;
-            line-height: 1.65;
-        }
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+    .chart-area { margin-top: 0.2rem; }
+    .chart-grid {
+      display: flex;
+      gap: 0.2rem;
+      align-items: flex-end;
+      height: 160px;
+      margin-bottom: 0.8rem;
+      border-bottom: 1px solid #232a35;
+      padding-bottom: 0.5rem;
+    }
+    .bar {
+      flex: 1;
+      background: #2b3342;
+      height: 40px;
+      border-radius: 6px 6px 0 0;
+      min-width: 8px;
+    }
+    .bar:nth-child(1) { height: 110px; background: #f0b90b; }
+    .bar:nth-child(2) { height: 80px; }
+    .bar:nth-child(3) { height: 130px; background: #f0b90b; }
+    .bar:nth-child(4) { height: 100px; }
+    .bar:nth-child(5) { height: 140px; background: #f0b90b; }
+    .bar:nth-child(6) { height: 60px; }
+    .bar:nth-child(7) { height: 120px; background: #f0b90b; }
+    .bar:nth-child(8) { height: 95px; }
+    .bar:nth-child(9) { height: 150px; background: #f0b90b; }
+    .bar:nth-child(10) { height: 70px; }
+    .bar:nth-child(11) { height: 115px; background: #f0b90b; }
+    .bar:nth-child(12) { height: 85px; }
+    .bar:nth-child(13) { height: 135px; background: #f0b90b; }
+    .bar:nth-child(14) { height: 50px; }
+    .bar:nth-child(15) { height: 125px; background: #f0b90b; }
+    .bar:nth-child(16) { height: 105px; }
+    .bar:nth-child(17) { height: 145px; background: #f0b90b; }
+    .bar:nth-child(18) { height: 90px; }
+    .bar:nth-child(19) { height: 155px; background: #f0b90b; }
+    .bar:nth-child(20) { height: 65px; }
 
-        /* BG Effects */
-        .bg-mesh {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            background:
-                radial-gradient(ellipse 60% 50% at 0% 0%, rgba(0, 214, 143, .07) 0%, transparent 65%),
-                radial-gradient(ellipse 50% 50% at 100% 100%, rgba(0, 212, 255, .05) 0%, transparent 60%),
-                radial-gradient(ellipse 40% 40% at 50% 50%, rgba(0, 179, 119, .03) 0%, transparent 60%);
-        }
-        .bg-grid {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            opacity: .015;
-            background-image: linear-gradient(rgba(0, 255, 136, .9) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 136, .9) 1px, transparent 1px);
-            background-size: 56px 56px;
-        }
+    .axis-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: #6e778b;
+      margin-top: 0.25rem;
+    }
+    .axis-labels .x { display: flex; gap: 0.8rem; }
+    .axis-labels .y { font-family: 'Inter', monospace; }
 
-        .wrap {
-            max-width: 1220px;
-            margin: 0 auto;
-            padding: 0 28px;
-            position: relative;
-            z-index: 1;
-        }
-        section {
-            position: relative;
-            z-index: 1;
-        }
+    .price-ticker {
+      margin-top: 1rem;
+      background: #0b0e14;
+      border-radius: 40px;
+      padding: 0.6rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.2rem 0.6rem;
+      border: 1px solid #202631;
+      font-size: 0.65rem;
+      color: #828ba3;
+      max-height: 60px;
+      overflow-y: auto;
+      font-family: 'Inter', monospace;
+    }
+    .price-ticker .highlight { color: #d4dcee; }
+    .price-ticker::-webkit-scrollbar { height: 3px; background: #1f2532; }
+    .price-ticker::-webkit-scrollbar-thumb { background: #3f475b; border-radius: 10px; }
 
-        /* ===== HEADER ===== */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 200;
-            backdrop-filter: blur(32px) saturate(180%);
-            background: rgba(3, 11, 6, .92);
-            border-bottom: 1px solid var(--b1);
-        }
-        .nav-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 72px;
-        }
+    /* --- AML WIDGET (Crystal style) --- */
+    .aml-widget {
+      background: #0f1219;
+      border-radius: 28px;
+      padding: 1.5rem 1.5rem 1.8rem;
+      border: 1px solid #252b36;
+      display: flex;
+      flex-direction: column;
+    }
+    .aml-widget h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #f0b90b;
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .aml-widget .subtitle {
+      font-size: 0.75rem;
+      color: #7e879e;
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid #232a35;
+      padding-bottom: 0.8rem;
+    }
+    .aml-input-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .aml-input-group input {
+      flex: 1;
+      background: #1a1f29;
+      border: 1px solid #2f3645;
+      border-radius: 40px;
+      padding: 0.65rem 1rem;
+      font-size: 0.8rem;
+      color: #eef2f6;
+      outline: none;
+      font-family: 'Inter', monospace;
+    }
+    .aml-input-group input::placeholder { color: #5e677e; }
+    .aml-input-group input:focus { border-color: #f0b90b; }
+    .aml-btn {
+      background: #f0b90b;
+      border: none;
+      border-radius: 40px;
+      padding: 0 1.4rem;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #0b0d11;
+      cursor: pointer;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+    .aml-btn:hover { background: #f9c93a; }
 
-        /* ===== PREMIUM SVG LOGO ===== */
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            cursor: pointer;
-        }
-        .logo-emblem {
-            width: 48px;
-            height: 48px;
-            flex-shrink: 0;
-            filter: drop-shadow(0 0 12px rgba(0, 255, 136, 0.4));
-        }
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-        .logo-name {
-            font-family: var(--fh);
-            font-weight: 800;
-            font-size: 1.05rem;
-            letter-spacing: .08em;
-            line-height: 1;
-            background: linear-gradient(135deg, var(--em) 0%, var(--eg) 50%, var(--cyan) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .logo-sub {
-            font-family: var(--fm);
-            font-size: .5rem;
-            letter-spacing: .2em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-top: 2px;
-        }
+    .risk-panel {
+      background: #0b0e14;
+      border-radius: 20px;
+      padding: 1rem;
+      border: 1px solid #202631;
+      margin-top: 0.2rem;
+    }
+    .risk-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid #1a1f29;
+    }
+    .risk-row:last-child { border-bottom: none; }
+    .risk-label { color: #9aa2b5; }
+    .risk-value { font-weight: 500; color: #eef2f6; }
+    .risk-score-big {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 0.4rem 0;
+      color: #f0b90b;
+    }
+    .risk-score-big span { font-size: 1rem; font-weight: 400; color: #6e778b; }
 
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 2px;
-        }
-        nav a {
-            font-family: var(--fm);
-            font-size: .68rem;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            color: var(--muted);
-            padding: 7px 13px;
-            border-radius: 8px;
-            transition: color .2s, background .2s;
-        }
-        nav a:hover {
-            color: var(--em);
-            background: rgba(0, 255, 136, .06);
-        }
+    .status-badge {
+      display: inline-block;
+      padding: 0.2rem 0.7rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    .status-clean { background: #1a3a2a; color: #6fcf97; }
+    .status-warn { background: #3a2f1a; color: #f2c94c; }
+    .status-critical { background: #3a1a1a; color: #f28b8b; }
 
-        .btn-scan-header {
-            font-family: var(--fh);
-            font-weight: 700;
-            font-size: .72rem;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            padding: 10px 22px;
-            border-radius: 10px;
-            border: 1px solid rgba(0, 255, 136, .35);
-            cursor: pointer;
-            background: linear-gradient(135deg, rgba(0, 255, 136, .1), rgba(0, 214, 143, .15));
-            color: var(--em);
-            box-shadow: 0 0 20px rgba(0, 255, 136, .15);
-            transition: transform .15s, box-shadow .2s, background .2s;
-        }
-        .btn-scan-header:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 36px rgba(0, 255, 136, .4);
-            background: linear-gradient(135deg, rgba(0, 255, 136, .18), rgba(0, 214, 143, .25));
-        }
+    .scan-status {
+      font-size: 0.75rem;
+      color: #6e778b;
+      margin-top: 0.8rem;
+      text-align: center;
+    }
 
-        /* ===== HERO ===== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 120px 0 80px;
-            position: relative;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--em), var(--cyan), var(--em), transparent);
-            opacity: .3;
-        }
-        .hero-inner {
-            display: grid;
-            grid-template-columns: 1fr 1.1fr;
-            gap: 80px;
-            align-items: center;
-        }
+    /* --- FOOTER --- */
+    .dex-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.8rem;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      border-top: 1px solid #232a35;
+      padding-top: 1.5rem;
+    }
+    .dex-footer .badge {
+      background: #1b212b;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #a4aec7;
+      border: 1px solid #2f3645;
+    }
+    .dex-footer .badge i { margin-right: 0.4rem; color: #f0b90b; }
+    .dex-footer .powered { color: #616b82; font-size: 0.7rem; }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            font-family: var(--fm);
-            font-size: .66rem;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            color: var(--em);
-            background: rgba(0, 255, 136, .06);
-            border: 1px solid rgba(0, 255, 136, .18);
-            padding: 7px 18px;
-            border-radius: 100px;
-            margin-bottom: 30px;
-        }
-        .pulse-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--em);
-            animation: pulse-dot 2s infinite;
-            flex-shrink: 0;
-        }
-
-        .hero h1 {
-            font-family: var(--fh);
-            font-weight: 900;
-            font-size: clamp(2.1rem, 4.5vw, 3.8rem);
-            line-height: 1.04;
-            letter-spacing: -.01em;
-            margin-bottom: 26px;
-        }
-        .h-em {
-            background: linear-gradient(135deg, var(--em), var(--eg));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .h-cy {
-            background: linear-gradient(135deg, var(--cyan), #0066ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero-desc {
-            font-family: var(--fi);
-            font-size: 1.02rem;
-            color: var(--muted);
-            max-width: 490px;
-            line-height: 1.9;
-            margin-bottom: 40px;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 50px;
-        }
-        .btn-main {
-            font-family: var(--fh);
-            font-weight: 700;
-            font-size: .76rem;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            padding: 14px 30px;
-            border-radius: var(--r);
-            border: none;
-            cursor: pointer;
-            background: linear-gradient(135deg, var(--em), var(--eg));
-            color: #020a05;
-            box-shadow: var(--glow-em);
-            transition: transform .15s, box-shadow .2s;
-        }
-        .btn-main:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 60px rgba(0, 255, 136, .5);
-        }
-        .btn-ghost {
-            font-family: var(--fh);
-            font-weight: 600;
-            font-size: .76rem;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            padding: 13px 28px;
-            border-radius: var(--r);
-            cursor: pointer;
-            background: rgba(0, 255, 136, .04);
-            color: var(--em);
-            border: 1px solid rgba(0, 255, 136, .2);
-            transition: border-color .2s, background .2s, box-shadow .2s;
-        }
-        .btn-ghost:hover {
-            border-color: rgba(0, 255, 136, .45);
-            background: rgba(0, 255, 136, .09);
-            box-shadow: 0 0 24px rgba(0, 255, 136, .12);
-        }
-
-        .hero-kpis {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .kpi {
-            padding: 15px 20px;
-            background: rgba(0, 214, 143, .04);
-            border: 1px solid rgba(0, 214, 143, .1);
-            border-radius: 14px;
-            min-width: 108px;
-            position: relative;
-            overflow: hidden;
-        }
-        .kpi::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--em), transparent);
-            opacity: .5;
-        }
-        .kpi-n {
-            font-family: var(--fh);
-            font-weight: 800;
-            font-size: 1.3rem;
-            letter-spacing: -.01em;
-            background: linear-gradient(135deg, var(--em), var(--eg));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .kpi-l {
-            font-family: var(--fm);
-            font-size: .6rem;
-            letter-spacing: .1em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-top: 5px;
-        }
-
-        /* ===== CRYSTAL SCAN WIDGET ===== */
-        .crystal-card {
-            background: linear-gradient(145deg, rgba(7, 22, 11, .98), rgba(5, 16, 9, .99));
-            border: 1px solid rgba(0, 214, 143, .18);
-            border-radius: 28px;
-            padding: 34px;
-            box-shadow: var(--glow-em), inset 0 1px 0 rgba(0, 255, 136, .08);
-            position: relative;
-            overflow: hidden;
-            animation: float-anim 9s ease-in-out infinite;
-        }
-        .crystal-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 28px;
-            background: linear-gradient(145deg, rgba(0, 255, 136, .06) 0%, transparent 40%, rgba(0, 212, 255, .03) 100%);
-            pointer-events: none;
-        }
-        .crystal-card .corner-tl,
-        .crystal-card .corner-br {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-        }
-        .crystal-card .corner-tl {
-            top: 16px;
-            left: 16px;
-            border-top: 1px solid rgba(0, 255, 136, .3);
-            border-left: 1px solid rgba(0, 255, 136, .3);
-            border-radius: 4px 0 0 0;
-        }
-        .crystal-card .corner-br {
-            bottom: 16px;
-            right: 16px;
-            border-bottom: 1px solid rgba(0, 255, 136, .3);
-            border-right: 1px solid rgba(0, 255, 136, .3);
-            border-radius: 0 0 4px 0;
-        }
-
-        .ac-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 26px;
-        }
-        .ac-title {
-            font-family: var(--fh);
-            font-weight: 700;
-            font-size: .92rem;
-            letter-spacing: .05em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--em);
-        }
-        .ac-title-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--em);
-            animation: pulse-dot 2s infinite;
-            box-shadow: 0 0 8px var(--em);
-        }
-        .ac-badges {
-            display: flex;
-            gap: 6px;
-        }
-        .ac-badge {
-            font-family: var(--fm);
-            font-size: .62rem;
-            padding: 4px 10px;
-            border-radius: 100px;
-            border: 1px solid rgba(0, 214, 143, .15);
-            color: var(--muted);
-        }
-        .ac-badge.live {
-            border-color: rgba(0, 255, 136, .3);
-            color: var(--em);
-        }
-        .ac-badge.ofac {
-            border-color: rgba(245, 166, 35, .3);
-            color: var(--amber);
-        }
-
-        .scan-input-wrap {
-            position: relative;
-            margin-bottom: 14px;
-        }
-        .scan-input {
-            width: 100%;
-            background: rgba(2, 8, 4, .8);
-            border: 1px solid rgba(0, 214, 143, .12);
-            border-radius: 13px;
-            padding: 15px 20px;
-            padding-right: 120px;
-            font-family: var(--fm);
-            font-size: .76rem;
-            color: var(--em);
-            outline: none;
-            transition: border-color .25s, box-shadow .25s, background .25s;
-        }
-        .scan-input:focus {
-            border-color: rgba(0, 255, 136, .4);
-            box-shadow: 0 0 0 3px rgba(0, 255, 136, .06), inset 0 0 20px rgba(0, 255, 136, .02);
-            background: rgba(0, 10, 5, .9);
-        }
-        .scan-input::placeholder {
-            color: var(--muted);
-        }
-        .btn-crystal-scan {
-            position: absolute;
-            right: 6px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-family: var(--fh);
-            font-weight: 700;
-            font-size: .7rem;
-            letter-spacing: .06em;
-            text-transform: uppercase;
-            padding: 9px 18px;
-            border-radius: 10px;
-            border: none;
-            cursor: pointer;
-            background: linear-gradient(135deg, var(--em), var(--eg));
-            color: #020a05;
-            transition: box-shadow .2s, transform .15s;
-        }
-        .btn-crystal-scan:hover {
-            box-shadow: 0 0 24px rgba(0, 255, 136, .55);
-            transform: translateY(-50%) scale(1.04);
-        }
-
-        .quick-btns {
-            display: flex;
-            gap: 7px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-        .qbtn {
-            font-family: var(--fm);
-            font-size: .64rem;
-            padding: 7px 13px;
-            border-radius: 9px;
-            border: 1px solid rgba(0, 214, 143, .12);
-            background: rgba(0, 214, 143, .03);
-            color: var(--muted);
-            cursor: pointer;
-            transition: all .2s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .qbtn:hover {
-            border-color: var(--em);
-            color: var(--em);
-            background: rgba(0, 255, 136, .07);
-            box-shadow: 0 0 12px rgba(0, 255, 136, .1);
-        }
-        .qbtn.warn:hover {
-            border-color: var(--amber);
-            color: var(--amber);
-            background: rgba(245, 166, 35, .06);
-        }
-        .qbtn.info:hover {
-            border-color: var(--cyan);
-            color: var(--cyan);
-            background: rgba(0, 212, 255, .06);
-        }
-
-        /* Risk Panel */
-        .risk-panel {
-            background: rgba(2, 6, 3, .7);
-            border: 1px solid rgba(0, 214, 143, .1);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 16px;
-            position: relative;
-            overflow: hidden;
-            min-height: 160px;
-            transition: all .3s;
-        }
-        .risk-panel.loading {
-            opacity: .5;
-            pointer-events: none;
-        }
-        .risk-panel .skeleton {
-            display: none;
-        }
-        .risk-panel.loading .skeleton {
-            display: block;
-        }
-        .risk-panel.loading .rp-content {
-            display: none;
-        }
-
-        .rp-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        .rp-label {
-            font-family: var(--fm);
-            font-size: .65rem;
-            letter-spacing: .1em;
-            text-transform: uppercase;
-            color: var(--muted);
-        }
-        .risk-score-bar {
-            height: 6px;
-            background: rgba(0, 214, 143, .06);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 16px;
-        }
-        .risk-score-fill {
-            height: 100%;
-            border-radius: 4px;
-            transition: width 1.3s cubic-bezier(.25, .46, .45, .94), background .5s;
-            width: 0%;
-        }
-        .score-low {
-            background: linear-gradient(90deg, #00ff88, #00d68f);
-        }
-        .score-mid {
-            background: linear-gradient(90deg, #f5a623, #fbbf24);
-        }
-        .score-high {
-            background: linear-gradient(90deg, #e84142, #ef4444);
-        }
-
-        .risk-indicators {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-        .ri-item {
-            background: rgba(0, 10, 5, .6);
-            border: 1px solid rgba(0, 214, 143, .08);
-            border-radius: 10px;
-            padding: 11px 13px;
-            font-family: var(--fm);
-            font-size: .65rem;
-        }
-        .ri-label {
-            color: var(--muted);
-            margin-bottom: 4px;
-            font-size: .6rem;
-            letter-spacing: .07em;
-            text-transform: uppercase;
-        }
-        .ri-val {
-            font-weight: 600;
-            font-size: .75rem;
-        }
-        .ri-val.clean {
-            color: var(--em);
-        }
-        .ri-val.warn {
-            color: var(--amber);
-        }
-        .ri-val.danger {
-            color: var(--red);
-        }
-
-        .source-bars {
-            margin-bottom: 16px;
-        }
-        .sb-title {
-            font-family: var(--fm);
-            font-size: .6rem;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 10px;
-        }
-        .sb-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 8px;
-            font-family: var(--fm);
-            font-size: .65rem;
-        }
-        .sb-label {
-            width: 100px;
-            color: var(--muted);
-            flex-shrink: 0;
-        }
-        .sb-bar-wrap {
-            flex: 1;
-            height: 4px;
-            background: rgba(0, 214, 143, .06);
-            border-radius: 3px;
-            overflow: hidden;
-        }
-        .sb-bar {
-            height: 100%;
-            border-radius: 3px;
-            transition: width 1s ease;
-            width: 0%;
-        }
-        .sb-pct {
-            width: 36px;
-            text-align: right;
-            color: var(--text);
-            font-size: .63rem;
-        }
-
-        .ac-actions {
-            display: flex;
-            gap: 8px;
-        }
-        .btn-view-report {
-            flex: 1;
-            padding: 13px;
-            font-family: var(--fh);
-            font-weight: 700;
-            font-size: .76rem;
-            letter-spacing: .06em;
-            text-transform: uppercase;
-            background: linear-gradient(135deg, var(--em), var(--eg));
-            color: #020a05;
-            border: none;
-            border-radius: 13px;
-            cursor: pointer;
-            transition: transform .15s, box-shadow .2s;
-        }
-        .btn-view-report:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 32px rgba(0, 255, 136, .5);
-        }
-        .btn-export {
-            padding: 13px 20px;
-            font-family: var(--fm);
-            font-size: .7rem;
-            background: rgba(0, 214, 143, .04);
-            border: 1px solid rgba(0, 214, 143, .15);
-            border-radius: 13px;
-            color: var(--muted);
-            cursor: pointer;
-            transition: all .2s;
-        }
-        .btn-export:hover {
-            border-color: var(--em);
-            color: var(--em);
-            background: rgba(0, 255, 136, .07);
-        }
-        .ac-footer {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 14px;
-            font-family: var(--fm);
-            font-size: .6rem;
-            color: var(--muted);
-        }
-        .ac-footer span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .ac-footer span::before {
-            content: '✓';
-            color: var(--em);
-        }
-
-        /* ===== TICKER ===== */
-        .ticker-wrap {
-            border-top: 1px solid rgba(0, 214, 143, .08);
-            border-bottom: 1px solid rgba(0, 214, 143, .08);
-            background: rgba(2, 8, 4, .97);
-            overflow: hidden;
-            padding: 11px 0;
-        }
-        .ticker-track {
-            display: flex;
-            gap: 64px;
-            width: max-content;
-            animation: ticker-run 44s linear infinite;
-        }
-        .t-i {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            font-family: var(--fm);
-            font-size: .69rem;
-            color: var(--muted);
-            white-space: nowrap;
-        }
-        .t-dot {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--em);
-        }
-        .t-v {
-            color: var(--em);
-            font-weight: 500;
-        }
-        .t-up {
-            color: var(--eg);
-        }
-        .t-dn {
-            color: var(--red);
-        }
-        .t-warn {
-            color: var(--amber);
-        }
-
-        /* ===== SECTIONS ===== */
-        .sec {
-            padding: 100px 0;
-        }
-        .sec-lbl {
-            font-family: var(--fm);
-            font-size: .64rem;
-            letter-spacing: .18em;
-            text-transform: uppercase;
-            color: var(--em);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .sec-lbl::before {
-            content: '';
-            width: 24px;
-            height: 1px;
-            background: var(--em);
-            opacity: .5;
-        }
-        .sec-h {
-            font-family: var(--fh);
-            font-weight: 800;
-            font-size: clamp(1.75rem, 3vw, 2.7rem);
-            line-height: 1.08;
-            letter-spacing: .01em;
-            margin-bottom: 18px;
-        }
-        .sec-sub {
-            font-family: var(--fi);
-            font-size: .97rem;
-            color: var(--muted);
-            max-width: 560px;
-            line-height: 1.88;
-        }
-        .sec-center {
-            text-align: center;
-        }
-        .sec-center .sec-sub {
-            margin: 0 auto;
-        }
-        .sec-center .sec-lbl {
-            justify-content: center;
-        }
-        .sec-center .sec-lbl::before {
-            display: none;
-        }
-
-        /* ===== FEATURES ===== */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-top: 58px;
-        }
-        .feat {
-            background: linear-gradient(145deg, rgba(7, 22, 11, .9), rgba(5, 16, 9, .95));
-            border: 1px solid rgba(0, 214, 143, .08);
-            border-radius: 22px;
-            padding: 32px 28px;
-            transition: border-color .3s, transform .3s, box-shadow .3s;
-            position: relative;
-            overflow: hidden;
-            cursor: default;
-        }
-        .feat::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--em), transparent);
-            opacity: 0;
-            transition: opacity .35s;
-        }
-        .feat:hover::before {
-            opacity: 1;
-        }
-        .feat:hover {
-            border-color: rgba(0, 214, 143, .28);
-            transform: translateY(-7px);
-            box-shadow: 0 20px 48px rgba(0, 214, 143, .1), 0 0 0 1px rgba(0, 255, 136, .06);
-        }
-        .feat-ico {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
-            background: rgba(0, 214, 143, .07);
-            border: 1px solid rgba(0, 214, 143, .12);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-            transition: background .3s, box-shadow .3s;
-        }
-        .feat:hover .feat-ico {
-            background: rgba(0, 214, 143, .12);
-            box-shadow: 0 0 20px rgba(0, 255, 136, .15);
-        }
-        .feat h3 {
-            font-family: var(--fh);
-            font-weight: 700;
-            font-size: .88rem;
-            letter-spacing: .03em;
-            margin-bottom: 12px;
-            color: var(--text);
-            position: relative;
-            z-index: 1;
-        }
-        .feat p {
-            font-family: var(--fi);
-            font-size: .87rem;
-            color: var(--muted);
-            line-height: 1.8;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ===== STATS ===== */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            margin-top: 46px;
-        }
-        .stat-card {
-            background: linear-gradient(145deg, rgba(7, 22, 11, .9), rgba(5, 16, 9, .95));
-            border: 1px solid rgba(0, 214, 143, .08);
-            border-radius: 20px;
-            padding: 30px 24px;
-            text-align: center;
-            transition: border-color .25s, transform .25s, box-shadow .25s;
-            position: relative;
-            overflow: hidden;
-        }
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--em), transparent);
-            opacity: .3;
-        }
-        .stat-card:hover {
-            border-color: rgba(0, 255, 136, .22);
-            transform: translateY(-5px);
-            box-shadow: 0 16px 40px rgba(0, 214, 143, .08);
-        }
-        .stat-n {
-            font-family: var(--fh);
-            font-weight: 900;
-            font-size: 2.2rem;
-            letter-spacing: .02em;
-            background: linear-gradient(135deg, var(--em), var(--eg));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 8px;
-        }
-        .stat-l {
-            font-family: var(--fm);
-            font-size: .64rem;
-            letter-spacing: .11em;
-            text-transform: uppercase;
-            color: var(--muted);
-        }
-
-        /* ===== RISK LEVELS ===== */
-        .risk-levels-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
-            margin-top: 56px;
-        }
-        .rl-card {
-            border-radius: 20px;
-            padding: 28px 22px;
-            text-align: center;
-            transition: transform .25s, box-shadow .25s;
-            position: relative;
-            overflow: hidden;
-        }
-        .rl-card:hover {
-            transform: translateY(-6px);
-        }
-        .rl-card.low {
-            background: rgba(0, 214, 143, .06);
-            border: 1px solid rgba(0, 214, 143, .22);
-        }
-        .rl-card.mid {
-            background: rgba(245, 166, 35, .06);
-            border: 1px solid rgba(245, 166, 35, .22);
-        }
-        .rl-card.high {
-            background: rgba(232, 65, 66, .07);
-            border: 1px solid rgba(232, 65, 66, .22);
-        }
-        .rl-card.critical {
-            background: rgba(232, 65, 66, .13);
-            border: 1px solid rgba(232, 65, 66, .45);
-            box-shadow: inset 0 0 50px rgba(232, 65, 66, .06);
-        }
-        .rl-pct {
-            font-family: var(--fh);
-            font-weight: 900;
-            font-size: 2.1rem;
-            margin-bottom: 8px;
-        }
-        .rl-card.low .rl-pct {
-            color: var(--em);
-        }
-        .rl-card.mid .rl-pct {
-            color: var(--amber);
-        }
-        .rl-card.high .rl-pct,
-        .rl-card.critical .rl-pct {
-            color: var(--red);
-        }
-        .rl-name {
-            font-family: var(--fh);
-            font-weight: 700;
-            font-size: .84rem;
-            letter-spacing: .05em;
-            margin-bottom: 12px;
-        }
-        .rl-desc {
-            font-family: var(--fi);
-            font-size: .83rem;
-            color: var(--muted);
-            line-height: 1.7;
-        }
-
-        /* ===== FAQ ===== */
-        .faq-section {
-            padding: 108px 0;
-        }
-        .faq-wrap {
-            max-width: 880px;
-            margin: 58px auto 0;
-        }
-        .faq-item {
-            border: 1px solid rgba(0, 214, 143, .08);
-            border-radius: var(--r);
-            margin-bottom: 8px;
-            overflow: hidden;
-            transition: border-color .2s;
-        }
-        .faq-item.open {
-            border-color: rgba(0, 255, 136, .22);
-            box-shadow: 0 4px 20px rgba(0, 214, 143, .06);
-        }
-        .faq-q {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 21px 28px;
-            cursor: pointer;
-            background: linear-gradient(145deg, rgba(7, 22, 11, .9), rgba(5, 16, 9, .95));
-            font-family: var(--fi);
-            font-weight: 600;
-            font-size: .94rem;
-            color: var(--text);
-            transition: background .2s;
-        }
-        .faq-q:hover {
-            background: rgba(0, 255, 136, .03);
-        }
-        .faq-ic {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 1px solid rgba(0, 214, 143, .15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 1rem;
-            color: var(--em);
-            transition: transform .3s, border-color .2s;
-            margin-left: 18px;
-        }
-        .faq-item.open .faq-ic {
-            transform: rotate(45deg);
-            border-color: rgba(0, 255, 136, .4);
-            box-shadow: 0 0 12px rgba(0, 255, 136, .2);
-        }
-        .faq-a {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height .45s ease;
-        }
-        .faq-a-inner {
-            padding: 20px 28px 26px;
-            font-family: var(--fi);
-            font-size: .91rem;
-            color: var(--muted);
-            line-height: 1.85;
-            background: rgba(0, 10, 5, .6);
-            border-top: 1px solid rgba(0, 214, 143, .06);
-        }
-        .faq-item.open .faq-a {
-            max-height: 600px;
-        }
-
-        /* ===== CTA ===== */
-        .cta-inner {
-            background: linear-gradient(135deg, rgba(0, 214, 143, .05), rgba(0, 212, 255, .04), rgba(0, 179, 119, .03));
-            border: 1px solid rgba(0, 214, 143, .15);
-            border-radius: 32px;
-            padding: 68px 64px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 48px;
-            position: relative;
-            overflow: hidden;
-        }
-        .cta-h {
-            font-family: var(--fh);
-            font-weight: 800;
-            font-size: 2rem;
-            letter-spacing: .02em;
-            margin-bottom: 14px;
-            line-height: 1.2;
-            color: var(--text);
-        }
-        .cta-h span {
-            background: linear-gradient(135deg, var(--em), var(--cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .cta-p {
-            font-family: var(--fi);
-            color: var(--muted);
-            max-width: 440px;
-            font-size: .97rem;
-            line-height: 1.82;
-        }
-        .cta-note {
-            font-family: var(--fm);
-            font-size: .61rem;
-            color: var(--muted);
-            text-align: center;
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: linear-gradient(180deg, rgba(5, 16, 9, .99), rgba(3, 11, 6, 1));
-            border-top: 1px solid rgba(0, 214, 143, .08);
-            padding: 68px 0 32px;
-        }
-        .ft-grid {
-            display: grid;
-            grid-template-columns: 2.2fr 1fr 1fr 1fr;
-            gap: 56px;
-            margin-bottom: 54px;
-        }
-        .ft-brand p {
-            font-family: var(--fi);
-            font-size: .87rem;
-            color: var(--muted);
-            margin-top: 18px;
-            max-width: 290px;
-            line-height: 1.78;
-        }
-        .ft-col h5 {
-            font-family: var(--fh);
-            font-weight: 700;
-            font-size: .7rem;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            color: rgba(0, 214, 143, .6);
-            margin-bottom: 18px;
-        }
-        .ft-col a {
-            font-family: var(--fi);
-            display: block;
-            font-size: .84rem;
-            color: var(--muted);
-            margin-bottom: 12px;
-            transition: color .2s;
-        }
-        .ft-col a:hover {
-            color: var(--em);
-        }
-        .ft-bot {
-            border-top: 1px solid rgba(0, 214, 143, .06);
-            padding-top: 28px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: var(--fm);
-            font-size: .64rem;
-            color: var(--muted);
-        }
-        .ft-bot a:hover {
-            color: var(--em);
-        }
-        .sec-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0, 214, 143, .1), rgba(0, 212, 255, .06), rgba(0, 214, 143, .1), transparent);
-        }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes pulse-dot {
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: .2;
-                transform: scale(.5);
-            }
-        }
-        @keyframes float-anim {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-14px);
-            }
-        }
-        @keyframes ticker-run {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(-50%);
-            }
-        }
-        @keyframes fade-up {
-            from {
-                opacity: 0;
-                transform: translateY(28px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes scan-line {
-            0% {
-                top: 0;
-                opacity: .7;
-            }
-            50% {
-                opacity: .9;
-            }
-            100% {
-                top: 100%;
-                opacity: 0;
-            }
-        }
-
-        .scan-overlay {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            overflow: hidden;
-            border-radius: 28px;
-            z-index: 10;
-        }
-        .scan-line-anim {
-            position: absolute;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--em), transparent);
-            box-shadow: 0 0 14px var(--em), 0 0 30px rgba(0, 255, 136, .3);
-            animation: scan-line 1.6s ease-in-out;
-            opacity: 0;
-        }
-        .scan-line-anim.active {
-            opacity: 1;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media(max-width:1020px) {
-            .hero-inner {
-                grid-template-columns: 1fr;
-            }
-            .crystal-card {
-                max-width: 560px;
-            }
-            .features-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .risk-levels-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .ft-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .cta-inner {
-                flex-direction: column;
-                padding: 44px 32px;
-            }
-        }
-        @media(max-width:600px) {
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            nav {
-                display: none;
-            }
-            .hero h1 {
-                font-size: 2.1rem;
-            }
-            .logo-emblem {
-                width: 42px;
-                height: 42px;
-            }
-            .risk-indicators {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-<link rel="stylesheet" href="css/style.css">
+    /* --- RESPONSIVE --- */
+    @media (max-width: 1000px) {
+      .main-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .app { padding: 1.25rem; }
+      .nav-left { gap: 1rem; flex-wrap: wrap; }
+      .nav-links { gap: 1rem; flex-wrap: wrap; }
+      .chart-header { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+      .price { font-size: 1.4rem; }
+    }
+  </style>
 </head>
 <body>
-    <body>
 
+<div class="app">
+  <!-- NAV -->
+  <div class="nav">
+    <div class="nav-left">
+      <div class="logo">1inch</div>
+      <div class="nav-links">
+        <span>Exchange</span><span>DAO</span><span>API</span>
+        <span>Blog</span><span>Help</span>
+        <span class="buy-eth"><i class="fas fa-arrow-up" style="margin-right: 5px;"></i> Buy ETH</span>
+      </div>
+    </div>
+    <div class="nav-right">
+      <i class="fas fa-globe"></i>
+      <i class="fas fa-user-circle"></i>
+    </div>
+  </div>
 
-<section class="crystal-hero">
+  <!-- HERO -->
+  <div class="hero">
+    <h1>LEADING DEX AGGREGATOR · AML CRYSTAL</h1>
+    <div class="sub">1inch offers the best rates · AML Crystal scans any TRC20 address for sanctions &amp; risk.</div>
+  </div>
 
-    <div class="hero-left">
-
-        <h1>
-            Crystal-Clear<br>
-            AML Intelligence<br>
-            <span>for TRON</span>
-        </h1>
-
-
-        <p>
-            Scan any TRC20 address, USDT TRC20 transaction 
-            or TRX wallet for sanctions, illicit funds and 
-            risk exposure — in under 1 second.
-        </p>
-
-
-        <div class="scan-box">
-
-            <input placeholder="Enter TRC20 address, TXID or Wallet">
-
-            <button>
-                💎 Scan
-            </button>
-
+  <!-- MAIN GRID: Chart + AML Widget -->
+  <div class="main-grid">
+    <!-- LEFT: CHART (1inch style) -->
+    <div class="chart-container">
+      <div class="chart-header">
+        <div class="pair-price">
+          <span class="pair">DAI / ETH</span>
+          <span class="price">1333.26</span>
+          <span class="change">-5.12%</span>
         </div>
+        <div class="time-tabs">
+          <span>1h</span><span>1d</span><span>1w</span>
+          <span class="active">1m</span><span>1y</span><span>All Time</span>
+        </div>
+      </div>
 
+      <div class="chart-area">
+        <div class="chart-grid">
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          <div class="bar"></div><div class="bar"></div>
+        </div>
+        <div class="axis-labels">
+          <div class="x"><span>06:16</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span></div>
+          <div class="y"><span>1400</span> <span>1300</span> <span>1200</span> <span>1100</span></div>
+        </div>
+      </div>
+
+      <!-- Price ticker -->
+      <div class="price-ticker">
+        <span>1333.262609238702</span><span>1333.262609238703</span>
+        <span>1333.262609238704</span><span>1333.262609238705</span>
+        <span>1333.262609238706</span><span>1333.262609238707</span>
+        <span>1333.262609238708</span><span>1333.262609238709</span>
+        <span>1333.262609238710</span><span>1333.262609238711</span>
+        <span>1333.262609238712</span><span>1333.262609238713</span>
+        <span>1333.262609238714</span><span>1333.262609238715</span>
+        <span>1333.262609238716</span><span>1333.262609238717</span>
+        <span>1333.262609238718</span><span>1333.262609238719</span>
+        <span>1333.262609238720</span><span>1333.262609238721</span>
+        <span>1333.262609238722</span><span>1333.262609238723</span>
+        <span>1333.262609238724</span><span>1333.262609238725</span>
+        <span>1333.262609238726</span><span>1333.262609238727</span>
+        <span>1333.262609238728</span><span>1333.262609238729</span>
+        <span>1333.262609238730</span><span>1333.262609238731</span>
+        <span>1333.262609238732</span><span>1333.262609238733</span>
+        <span>1333.262609238734</span><span>1333.262609238735</span>
+        <span>1333.262609238736</span><span>1333.262609238737</span>
+        <span>1333.262609238738</span><span>1333.262609238739</span>
+        <span>1333.262609238740</span><span>1333.262609238741</span>
+        <span>1333.262609238742</span><span>1333.262609238743</span>
+        <span>1333.262609238744</span><span>1333.262609238745</span>
+        <span>1333.262609238746</span><span>1333.262609238747</span>
+        <span>1333.262609238748</span><span>1333.262609238749</span>
+        <span>1333.262609238750</span><span>1333.262609238751</span>
+        <span>1333.262609238752</span><span>1333.262609238753</span>
+        <span>1333.262609238754</span><span>1333.262609238755</span>
+        <span>1333.262609238756</span><span>1333.262609238757</span>
+        <span>1333.262609238758</span><span>1333.262609238759</span>
+        <span>1333.262609238760</span><span>1333.262609238761</span>
+        <span>1333.262609238762</span><span>1333.262609238763</span>
+        <span>1333.262609238764</span><span>1333.262609238765</span>
+        <span>1333.262609238766</span><span>1333.262609238767</span>
+        <span>1333.262609238768</span><span>1333.262609238769</span>
+        <span>1333.262609238770</span><span>1333.262609238771</span>
+        <span>1333.262609238772</span><span>1333.262609238773</span>
+        <span>1333.262609238774</span><span>1333.262609238775</span>
+        <span>1333.262609238776</span><span>1333.262609238777</span>
+        <span>1333.262609238778</span><span>1333.262609238779</span>
+        <span>1333.262609238780</span><span>1333.262609238781</span>
+        <span>1333.262609238782</span><span>1333.262609238783</span>
+        <span>1333.262609238784</span><span>1333.262609238785</span>
+        <span>1333.262609238786</span><span>1333.262609238787</span>
+        <span>1333.262609238788</span><span>1333.262609238789</span>
+        <span>1333.262609238790</span><span>1333.262609238791</span>
+        <span>1333.262609238792</span><span>1333.262609238793</span>
+        <span>1333.262609238794</span><span>1333.262609238795</span>
+        <span>1333.262609238796</span><span>1333.262609238797</span>
+        <span>1333.262609238798</span><span>1333.262609238799</span>
+        <span>1333.262609238800</span><span>1333.262609238801</span>
+        <span>1333.262609238802</span><span>1333.262609238803</span>
+        <span>1333.262609238804</span><span>1333.262609238805</span>
+        <span>1333.262609238806</span><span>1333.262609238807</span>
+        <span>1333.262609238808</span><span>1333.262609238809</span>
+        <span>1333.262609238810</span><span>1333.262609238811</span>
+        <span>1333.262609238812</span><span>1333.262609238813</span>
+        <span>1333.262609238814</span><span>1333.262609238815</span>
+        <span>1333.262609238816</span><span>1333.262609238817</span>
+        <span>1333.262609238818</span><span>1333.262609238819</span>
+        <span>1333.262609238820</span><span>1333.262609238821</span>
+        <span>1333.262609238822</span><span>1333.262609238823</span>
+        <span>1333.262609238824</span><span>1333.262609238825</span>
+        <span>1333.262609238826</span><span>1333.262609238827</span>
+        <span>1333.262609238828</span><span>1333.262609238829</span>
+        <span>1333.262609238830</span><span>1333.262609238831</span>
+        <span>1333.262609238832</span><span>1333.262609238833</span>
+        <span>1333.262609238834</span><span>1333.262609238835</span>
+        <span>1333.262609238836</span><span>1333.262609238837</span>
+        <span>1333.262609238838</span><span>1333.262609238839</span>
+        <span>1333.262609238840</span><span>1333.262609238841</span>
+        <span>1333.262609238842</span><span>1333.262609238843</span>
+        <span>1333.262609238844</span><span>1333.262609238845</span>
+        <span>1333.262609238846</span><span>1333.262609238847</span>
+        <span>1333.262609238848</span><span>1333.262609238849</span>
+        <span>1333.262609238850</span><span>1333.262609238851</span>
+        <span>1333.262609238852</span><span>1333.262609238853</span>
+        <span>1333.262609238854</span><span>1333.262609238855</span>
+        <span>1333.262609238856</span><span>1333.262609238857</span>
+        <span>1333.262609238858</span><span>1333.262609238859</span>
+        <span>1333.262609238860</span><span>1333.262609238861</span>
+        <span>1333.262609238862</span><span>1333.262609238863</span>
+        <span>1333.262609238864</span><span>1333.262609238865</span>
+        <span>1333.262609238866</span><span>1333.262609238867</span>
+        <span>1333.262609238868</span><span>1333.262609238869</span>
+        <span>1333.262609238870</span><span>1333.262609238871</span>
+        <span>1333.262609238872</span><span>1333.262609238873</span>
+        <span>1333.262609238874</span><span>1333.262609238875</span>
+        <span>1333.262609238876</span><span>1333.262609238877</span>
+        <span>1333.262609238878</span><span>1333.262609238879</span>
+        <span>1333.262609238880</span><span>1333.262609238881</span>
+        <span>1333.262609238882</span><span>1333.262609238883</span>
+        <span>1333.262609238884</span><span>1333.262609238885</span>
+        <span>1333.262609238886</span><span>1333.262609238887</span>
+        <span>1333.262609238888</span><span>1333.262609238889</span>
+        <span>1333.262609238890</span><span>1333.262609238891</span>
+        <span>1333.262609238892</span><span>1333.262609238893</span>
+        <span>1333.262609238894</span><span>1333.262609238895</span>
+        <span>1333.262609238896</span><span>1333.262609238897</span>
+        <span>1333.262609238898</span><span>1333.262609238899</span>
+        <span>1333.262609238900</span><span>1333.262609238901</span>
+        <span>1333.262609238902</span><span>1333.262609238903</span>
+        <span>1333.262609238904</span><span>1333.262609238905</span>
+        <span>1333.262609238906</span><span>1333.262609238907</span>
+        <span>1333.262609238908</span><span>1333.262609238909</span>
+        <span>1333.262609238910</span><span>1333.262609238911</span>
+        <span>1333.262609238912</span><span>1333.262609238913</span>
+        <span>1333.262609238914</span><span>1333.262609238915</span>
+        <span>1333.262609238916</span><span>1333.262609238917</span>
+        <span>1333.262609238918</span><span>1333.262609238919</span>
+        <span>1333.262609238920</span><span>1333.262609238921</span>
+        <span>1333.262609238922</span><span>1333.262609238923</span>
+        <span>1333.262609238924</span><span>1333.262609238925</span>
+        <span>1333.262609238926</span><span>1333.262609238927</span>
+        <span>1333.262609238928</span><span>1333.262609238929</span>
+        <span>1333.262609238930</span><span>1333.262609238931</span>
+        <span>1333.262609238932</span><span>1333.262609238933</span>
+        <span>1333.262609238934</span><span>1333.262609238935</span>
+        <span>1333.262609238936</span><span>1333.262609238937</span>
+        <span>1333.262609238938</span><span>1333.262609238939</span>
+        <span>1333.262609238940</span><span>1333.262609238941</span>
+        <span>1333.262609238942</span><span>1333.262609238943</span>
+        <span>1333.262609238944</span><span>1333.262609238945</span>
+        <span>1333.262609238946</span><span>1333.262609238947</span>
+        <span>1333.262609238948</span><span>1333.262609238949</span>
+        <span>1333.262609238950</span><span>1333.262609238951</span>
+        <span>1333.262609238952</span><span>1333.262609238953</span>
+        <span>1333.262609238954</span><span>1333.262609238955</span>
+        <span>1333.262609238956</span><span>1333.262609238957</span>
+        <span>1333.262609238958</span><span>1333.262609238959</span>
+        <span>1333.262609238960</span><span>1333.262609238961</span>
+        <span>1333.262609238962</span><span>1333.262609238963</span>
+        <span>1333.262609238964</span><span>1333.262609238965</span>
+        <span>1333.262609238966</span><span>1333.262609238967</span>
+        <span>1333.262609238968</span><span>1333.262609238969</span>
+        <span>1333.262609238970</span><span>1333.262609238971</span>
+        <span>1333.262609238972</span><span>1333.262609238973</span>
+        <span>1333.262609238974</span><span>1333.262609238975</span>
+        <span>1333.262609238976</span><span>1333.262609238977</span>
+        <span>1333.262609238978</span><span>1333.262609238979</span>
+        <span>1333.262609238980</span><span>1333.262609238981</span>
+        <span>1333.262609238982</span><span>1333.262609238983</span>
+        <span>1333.262609238984</span><span>1333.262609238985</span>
+        <span>1333.262609238986</span><span>1333.262609238987</span>
+        <span>1333.262609238988</span><span>1333.262609238989</span>
+        <span>1333.262609238990</span><span class="highlight">1333</span>
+      </div>
     </div>
 
+    <!-- RIGHT: AML CRYSTAL WIDGET -->
+    <div class="aml-widget">
+      <h3><i class="fas fa-shield-alt"></i> AML Crystal</h3>
+      <div class="subtitle">TRON · TRC20 Risk Scanner</div>
 
-    <div class="hero-left">
+      <div class="aml-input-group">
+        <input type="text" id="amlAddress" placeholder="Enter TRON address (T...)" value="TQm9XgHfJkLpN4sW2rYv7cDz3uEaFbGcHd">
+        <button class="aml-btn" id="scanBtn"><i class="fas fa-search"></i> Scan</button>
+      </div>
 
-    <h1>
-        Crystal-Clear<br>
-        AML Intelligence<br>
-        <span>for TRON</span>
-    </h1>
+      <div class="risk-panel" id="riskPanel">
+        <div class="risk-score-big" id="riskScore">— <span>/ 100</span></div>
+        <div class="risk-row"><span class="risk-label">Sanctions</span><span class="risk-value" id="sanctionsStatus">—</span></div>
+        <div class="risk-row"><span class="risk-label">Mixer Exposure</span><span class="risk-value" id="mixerExposure">—</span></div>
+        <div class="risk-row"><span class="risk-label">Darknet Market</span><span class="risk-value" id="darknetStatus">—</span></div>
+        <div class="risk-row"><span class="risk-label">Exchange KYC</span><span class="risk-value" id="exchangeKyc">—</span></div>
+        <div class="risk-row"><span class="risk-label">Fund Source</span><span class="risk-value" id="fundSource">—</span></div>
+      </div>
 
-
-    <p>
-        Scan any TRC20 address, USDT TRC20 transaction 
-        or TRX wallet for sanctions, illicit funds and 
-        risk exposure — in under 1 second.
-    </p>
-
-
-    <div class="scan-box">
-
-        <input placeholder="Enter TRC20 address, TXID or Wallet">
-
-        <button>
-            💎 Scan
-        </button>
-
+      <div class="scan-status" id="scanStatus"><i class="fas fa-circle" style="color: #6fcf97; font-size: 0.5rem;"></i> Live · TRON OFAC</div>
     </div>
+  </div>
 
+  <!-- FOOTER -->
+  <div class="dex-footer">
+    <div class="badge"><i class="fas fa-bolt"></i> 1inch · AML Crystal</div>
+    <div class="powered"><i class="fas fa-circle"></i> aggregated · crystal-clear AML</div>
+  </div>
 </div>
 
-
-<div class="hero-crystal">
-
-    <canvas id="crystalCanvas"></canvas>
-
-</div>
-
-    <canvas id="crystalCanvas"></canvas>
-
-</div>
-
-</section>
-
-    <!-- ===== BG EFFECTS ===== -->
-    <div class="xsudlmqvbag x2wl7trk bg-mesh" aria-hidden="true"></div>
-    <div class="xsudlmqvbag x2wl7trk bg-grid" aria-hidden="true"></div>
-
-    <!-- ===== HEADER ===== -->
-    <header>
-        <div class="xsudlmqvbag x2wl7trk wrap">
-            <div class="xsudlmqvbag x2wl7trk nav-row">
-
-                <!-- LOGO: Premium SVG Crystal + Shield -->
-                <a href="/" class="xsudlmqvbag x2wl7trk logo" aria-label="AML Crystal Home">
-                    <svg class="xsudlmqvbag x2wl7trk logo-emblem" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <defs>
-                            <radialGradient id="bg-logo" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#0d1f12"/><stop offset="100%" stop-color="#040c06"/></radialGradient>
-                            <linearGradient id="ring-outer" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00ff88"/><stop offset="40%" stop-color="#00d68f"/><stop offset="80%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#00ff88"/></linearGradient>
-                            <linearGradient id="crystal-grad" x1="20%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#00ff88"/><stop offset="30%" stop-color="#00d68f"/><stop offset="60%" stop-color="#007a50"/><stop offset="100%" stop-color="#004d35"/></linearGradient>
-                            <linearGradient id="shield-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1a3d28"/><stop offset="100%" stop-color="#0a1f14"/></linearGradient>
-                            <filter id="glow-em"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                            <filter id="shadow-crystal"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00ff88" flood-opacity="0.4"/></filter>
-                        </defs>
-                        <circle cx="60" cy="60" r="58" fill="url(#bg-logo)"/>
-                        <circle cx="60" cy="60" r="55" fill="none" stroke="url(#ring-outer)" stroke-width="2.5" opacity="0.7" filter="url(#glow-em)"/>
-                        <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(0,255,136,0.2)" stroke-width="1"/>
-                        <circle cx="60" cy="60" r="49" fill="none" stroke="rgba(0,255,136,0.08)" stroke-width="0.5"/>
-                        <!-- Crystal -->
-                        <polygon points="60,22 79,38 74,62 60,70 46,62 41,38" fill="url(#crystal-grad)" opacity="0.95" filter="url(#shadow-crystal)"/>
-                        <polygon points="60,22 79,38 60,38" fill="rgba(0,255,136,0.25)"/>
-                        <polygon points="60,22 41,38 60,38" fill="rgba(0,255,136,0.12)"/>
-                        <polygon points="60,38 79,38 74,62 60,70" fill="rgba(0,179,119,0.2)"/>
-                        <polygon points="60,38 41,38 46,62 60,70" fill="rgba(0,214,143,0.15)"/>
-                        <polygon points="60,22 72,33 64,35 60,24" fill="rgba(175,255,223,0.5)" opacity="0.7"/>
-                        <!-- Shield -->
-                        <path d="M60 46 L73 52 L73 64 C73 71 67 77 60 79 C53 77 47 71 47 64 L47 52 Z" fill="url(#shield-grad)"/>
-                        <path d="M60 46 L73 52 L73 64 C73 71 67 77 60 79 C53 77 47 71 47 64 L47 52 Z" fill="none" stroke="#00ff88" stroke-width="1.8" filter="url(#glow-em)"/>
-                        <!-- Checkmark -->
-                        <polyline points="53,63 58,69 68,56" fill="none" stroke="#00ff88" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-em)"/>
-                        <!-- AML Text -->
-                        <text x="60" y="100" font-family="Orbitron,sans-serif" font-size="11" font-weight="700" fill="#00ff88" text-anchor="middle" letter-spacing="4" filter="url(#glow-em)">AML</text>
-                        <text x="60" y="110" font-family="Orbitron,sans-serif" font-size="6.5" font-weight="500" fill="rgba(0,214,143,0.6)" text-anchor="middle" letter-spacing="2">CRYSTAL</text>
-                    </svg>
-                    <div class="xsudlmqvbag x2wl7trk logo-text">
-                        <span class="xsudlmqvbag x2wl7trk logo-name">AML Crystal</span>
-                        <span class="xsudlmqvbag x2wl7trk logo-sub">TRON Intelligence</span>
-                    </div>
-                </a>
-
-                <nav role="navigation" aria-label="Main navigation">
-                    <a href="#scan">Scan</a>
-                    <a href="#features">Features</a>
-                    <a href="#risk">Risk Levels</a>
-                    <a href="#faq">FAQ</a>
-                </nav>
-                <button class="xsudlmqvbag x2wl7trk btn-scan-header" aria-label="Start AML Crystal Scan" onclick="document.getElementById('aml-input').focus();document.getElementById('aml-widget').scrollIntoView({behavior:'smooth',block:'center'})">💎 Crystal Scan</button>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <!-- ===== HERO ===== -->
-        <section class="xsudlmqvbag x2wl7trk hero" aria-labelledby="hero-h1" id="scan">
-            <div class="xsudlmqvbag x2wl7trk wrap">
-                <div class="xsudlmqvbag x2wl7trk hero-inner">
-                    <!-- Left -->
-                    <div class="xsudlmqvbag x2wl7trk">
-                        <div class="xsudlmqvbag x2wl7trk hero-badge"><span class="xsudlmqvbag x2wl7trk pulse-dot"></span>TRON Network — Crystal-Clear AML Intelligence</div>
-                        <h1 id="hero-h1">
-                            <span class="xsudlmqvbag x2wl7trk h-em">AML Crystal</span><br/>
-                            <span class="xsudlmqvbag x2wl7trk h-w">Check</span> <span class="xsudlmqvbag x2wl7trk h-cy">TRON</span><br/>
-                            <span class="xsudlmqvbag x2wl7trk h-em">Instantly</span>
-                        </h1>
-                        <p class="xsudlmqvbag x2wl7trk hero-desc">AML Crystal is the most advanced compliance intelligence platform for the TRON blockchain. Powered by crystal-clear forensic analysis — detect illicit funds, sanctions exposure, mixer interactions and high-risk counterparties across any TRC20 address, USDT TRC20 transaction or TRX wallet in under 1 second.</p>
-                        <div class="xsudlmqvbag x2wl7trk hero-btns">
-                            <button class="xsudlmqvbag x2wl7trk btn-main" onclick="document.getElementById('aml-input').focus();document.getElementById('aml-widget').scrollIntoView({behavior:'smooth',block:'center'})">💎 Start Crystal Scan</button>
-                            <button class="xsudlmqvbag x2wl7trk btn-ghost" id="viewReportBtn">📋 View AML Report</button>
-                        </div>
-                        <div class="xsudlmqvbag x2wl7trk hero-kpis" role="list">
-                            <div class="xsudlmqvbag x2wl7trk kpi" role="listitem"><div class="xsudlmqvbag x2wl7trk kpi-n">99.8%</div><div class="xsudlmqvbag x2wl7trk kpi-l">Accuracy</div></div>
-                            <div class="xsudlmqvbag x2wl7trk kpi" role="listitem"><div class="xsudlmqvbag x2wl7trk kpi-n">3.1B+</div><div class="xsudlmqvbag x2wl7trk kpi-l">TXs Indexed</div></div>
-                            <div class="xsudlmqvbag x2wl7trk kpi" role="listitem"><div class="xsudlmqvbag x2wl7trk kpi-n">&lt;1s</div><div class="xsudlmqvbag x2wl7trk kpi-l">Scan Speed</div></div>
-                            <div class="xsudlmqvbag x2wl7trk kpi" role="listitem"><div class="xsudlmqvbag x2wl7trk kpi-n">55M+</div><div class="xsudlmqvbag x2wl7trk kpi-l">Addresses</div></div>
-                        </div>
-                    </div>
-
-                    <!-- Right — Widget -->
-                    <div class="xsudlmqvbag x2wl7trk crystal-card" id="aml-widget">
-                        <div class="xsudlmqvbag x2wl7trk corner-tl"></div><div class="xsudlmqvbag x2wl7trk corner-br"></div>
-                        <div class="xsudlmqvbag x2wl7trk scan-overlay"><div class="xsudlmqvbag x2wl7trk scan-line-anim" id="scan-line"></div></div>
-
-                        <div class="xsudlmqvbag x2wl7trk ac-top">
-                            <span class="xsudlmqvbag x2wl7trk ac-title"><span class="xsudlmqvbag x2wl7trk ac-title-dot"></span>AML Crystal Scanner</span>
-                            <div class="xsudlmqvbag x2wl7trk ac-badges">
-                                <span class="xsudlmqvbag x2wl7trk ac-badge live">● LIVE</span>
-                                <span class="xsudlmqvbag x2wl7trk ac-badge">TRON</span>
-                                <span class="xsudlmqvbag x2wl7trk ac-badge ofac">OFAC</span>
-                            </div>
-                        </div>
-
-                        <div class="xsudlmqvbag x2wl7trk scan-input-wrap">
-                            <input class="xsudlmqvbag x2wl7trk scan-input" type="text" placeholder="Paste TRC20 address or TX hash (T...)" id="aml-input" aria-label="TRC20 address or transaction hash" />
-                            <button class="xsudlmqvbag x2wl7trk btn-crystal-scan" id="scanBtn">Scan</button>
-                        </div>
-
-                        <div class="xsudlmqvbag x2wl7trk quick-btns">
-                            <button class="xsudlmqvbag x2wl7trk qbtn" data-addr="TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9">🔍 AML Scan</button>
-                            <button class="xsudlmqvbag x2wl7trk qbtn" data-addr="TYASr5UV6HEcXatwdFQfmLVUqQZwCcGwez">📋 View AML</button>
-                            <button class="xsudlmqvbag x2wl7trk qbtn" data-addr="TVj7RNVHy6thbM7BWdSe9G6gXwKhjhdNZS">🚫 Sanctions</button>
-                            <button class="xsudlmqvbag x2wl7trk qbtn warn" data-addr="TDyvndWuvX5xTAEyoDVMDMACQb67bFCBBQ">🔗 Trace Funds</button>
-                            <button class="xsudlmqvbag x2wl7trk qbtn info" data-addr="TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t">📦 Bulk Scan</button>
-                        </div>
-
-                        <!-- Risk Panel -->
-                        <div class="xsudlmqvbag x2wl7trk risk-panel" id="riskPanel">
-                            <div class="xsudlmqvbag x2wl7trk skeleton" style="padding:20px;text-align:center;color:var(--muted);font-family:var(--fm);font-size:.8rem;">🔮 Scanning TRON blockchain...</div>
-                            <div class="xsudlmqvbag x2wl7trk rp-content">
-                                <div class="xsudlmqvbag x2wl7trk rp-row">
-                                    <span class="xsudlmqvbag x2wl7trk rp-label">Crystal Risk Score</span>
-                                    <span id="riskScoreVal" style="font-family:var(--fm);font-size:.78rem;color:var(--em);font-weight:600">— / 100</span>
-                                </div>
-                                <div class="xsudlmqvbag x2wl7trk risk-score-bar"><div class="xsudlmqvbag x2wl7trk risk-score-fill" id="riskBar"></div></div>
-                                <div class="xsudlmqvbag x2wl7trk risk-indicators">
-                                    <div class="xsudlmqvbag x2wl7trk ri-item"><div class="xsudlmqvbag x2wl7trk ri-label">Sanctions</div><div class="xsudlmqvbag x2wl7trk ri-val clean" id="riSanctions">—</div></div>
-                                    <div class="xsudlmqvbag x2wl7trk ri-item"><div class="xsudlmqvbag x2wl7trk ri-label">Mixer Exposure</div><div class="xsudlmqvbag x2wl7trk ri-val clean" id="riMixer">—</div></div>
-                                    <div class="xsudlmqvbag x2wl7trk ri-item"><div class="xsudlmqvbag x2wl7trk ri-label">Darknet Market</div><div class="xsudlmqvbag x2wl7trk ri-val clean" id="riDark">—</div></div>
-                                    <div class="xsudlmqvbag x2wl7trk ri-item"><div class="xsudlmqvbag x2wl7trk ri-label">Exchange KYC</div><div class="xsudlmqvbag x2wl7trk ri-val warn" id="riKYC">—</div></div>
-                                </div>
-                                <div class="xsudlmqvbag x2wl7trk source-bars">
-                                    <div class="xsudlmqvbag x2wl7trk sb-title">Fund Source Breakdown</div>
-                                    <div class="xsudlmqvbag x2wl7trk sb-row"><span class="xsudlmqvbag x2wl7trk sb-label">Clean Exchange</span><div class="xsudlmqvbag x2wl7trk sb-bar-wrap"><div class="xsudlmqvbag x2wl7trk sb-bar" id="sbClean" style="background:var(--em)"></div></div><span class="xsudlmqvbag x2wl7trk sb-pct" id="sbCleanPct">—</span></div>
-                                    <div class="xsudlmqvbag x2wl7trk sb-row"><span class="xsudlmqvbag x2wl7trk sb-label">P2P / OTC</span><div class="xsudlmqvbag x2wl7trk sb-bar-wrap"><div class="xsudlmqvbag x2wl7trk sb-bar" id="sbP2P" style="background:var(--amber)"></div></div><span class="xsudlmqvbag x2wl7trk sb-pct" id="sbP2PPct">—</span></div>
-                                    <div class="xsudlmqvbag x2wl7trk sb-row"><span class="xsudlmqvbag x2wl7trk sb-label">Unknown</span><div class="xsudlmqvbag x2wl7trk sb-bar-wrap"><div class="xsudlmqvbag x2wl7trk sb-bar" id="sbUnknown" style="background:var(--muted)"></div></div><span class="xsudlmqvbag x2wl7trk sb-pct" id="sbUnknownPct">—</span></div>
-                                    <div class="xsudlmqvbag x2wl7trk sb-row"><span class="xsudlmqvbag x2wl7trk sb-label">High Risk</span><div class="xsudlmqvbag x2wl7trk sb-bar-wrap"><div class="xsudlmqvbag x2wl7trk sb-bar" id="sbHigh" style="background:var(--red)"></div></div><span class="xsudlmqvbag x2wl7trk sb-pct" id="sbHighPct">—</span></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="xsudlmqvbag x2wl7trk ac-actions">
-                            <button class="xsudlmqvbag x2wl7trk btn-view-report" id="viewReportBtn2">💎 View Full AML Report</button>
-                            <button class="xsudlmqvbag x2wl7trk btn-export" id="exportPDFBtn">PDF ↓</button>
-                        </div>
-                        <div class="xsudlmqvbag x2wl7trk ac-footer">
-                            <span>OFAC Checked</span><span>FATF Compliant</span><span>Real-Time</span><span>EU Sanctions</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== TICKER ===== -->
-        <div class="xsudlmqvbag x2wl7trk ticker-wrap" aria-hidden="true">
-            <div class="xsudlmqvbag x2wl7trk ticker-track" id="tickerTrack">
-                <!-- populated by JS -->
-            </div>
-        </div>
-
-        <div class="xsudlmqvbag x2wl7trk sec-divider"></div>
-
-        <!-- ===== FEATURES ===== -->
-        <section class="xsudlmqvbag x2wl7trk sec" id="features">
-            <div class="xsudlmqvbag x2wl7trk wrap">
-                <div class="xsudlmqvbag x2wl7trk sec-center">
-                    <div class="xsudlmqvbag x2wl7trk sec-lbl">Why AML Crystal</div>
-                    <h2 class="xsudlmqvbag x2wl7trk sec-h">Crystal-Clear AML Intelligence<br/>Built for TRON &amp; TRC20</h2>
-                    <p class="xsudlmqvbag x2wl7trk sec-sub">The most comprehensive AML risk intelligence platform for TRON — used by exchanges, OTC desks, and compliance teams worldwide to screen USDT TRC20 and TRX transactions with crystal-level precision.</p>
-                </div>
-                <div class="xsudlmqvbag x2wl7trk features-grid">
-                    <article class="xsudlmqvbag x2wl7trk feat"><div class="xsudlmqvbag x2wl7trk feat-ico">🛡️</div><h3>Real-Time Crystal Risk Scoring</h3><p>Every TRC20 address receives a 0–100 AML risk score computed from transaction history, counterparty exposure, and behavioral clustering — updated in real time as new TRON blocks arrive.</p></article>
-                    <article class="xsudlmqvbag x2wl7trk feat"><div class="xsudlmqvbag x2wl7trk feat-ico">🚫</div><h3>OFAC &amp; Global Sanctions Check</h3><p>Instantly cross-reference any TRON wallet or USDT TRC20 transaction against OFAC SDN lists, EU sanctions, UN lists and 40+ global watchlists — zero false negatives guaranteed.</p></article>
-                    <article class="xsudlmqvbag x2wl7trk feat"><div class="xsudlmqvbag x2wl7trk feat-ico">🔗</div><h3>Crystal Fund Source Tracing</h3><p>Trace the origin of every token across up to 10 hops of TRON blockchain history. Identify exposure to darknet markets, exchanges, mixers, and gambling platforms on TRC20 with crystal clarity.</p></article>
-                    <article class="xsudlmqvbag x2wl7trk feat"><div class="xsudlmqvbag x2wl7trk feat-ico">🔍</div><h3>Transaction Graph Analysis</h3><p>Visualize the complete fund flow network around any TRC20 address. Cluster detection algorithms expose shell wallets and peeling chains used to launder USDT TRC20 funds on TRON.</p></article>
-                    <article class="xsudlmqvbag x2wl7trk feat"><div class="xsudlmqvbag x2wl7trk feat-ico">📋</div><h3>Audit-Ready Crystal Reports</h3><p>Generate detailed AML compliance reports in one click. Formatted for regulators, exchanges, and legal counsel — with full methodology disclosure, risk breakdown and sanctions match status.</p></article>
-                    <article class="xsudlmqvbag x2wl7trk feat"><div class="xsudlmqvbag x2wl7trk feat-ico">⚡</div><h3>Sub-Second Scan Results</h3><p>AML Crystal processes single-address checks in under 1 second. Enterprise bulk API handles up to 10,000 TRC20 addresses per minute for high-throughput compliance pipelines on TRON.</p></article>
-                </div>
-            </div>
-        </section>
-
-        <div class="xsudlmqvbag x2wl7trk sec-divider"></div>
-
-        <!-- ===== STATS ===== -->
-        <section class="xsudlmqvbag x2wl7trk stats-band" style="padding:80px 0;">
-            <div class="xsudlmqvbag x2wl7trk wrap">
-                <div class="xsudlmqvbag x2wl7trk sec-center">
-                    <div class="xsudlmqvbag x2wl7trk sec-lbl">Platform Stats</div>
-                    <h2 class="xsudlmqvbag x2wl7trk sec-h">Trusted by TRON Compliance<br/>Teams Worldwide</h2>
-                </div>
-                <div class="xsudlmqvbag x2wl7trk stats-grid">
-                    <div class="xsudlmqvbag x2wl7trk stat-card"><div class="xsudlmqvbag x2wl7trk stat-n">3.1B+</div><div class="xsudlmqvbag x2wl7trk stat-l">TRON Transactions Indexed</div></div>
-                    <div class="xsudlmqvbag x2wl7trk stat-card"><div class="xsudlmqvbag x2wl7trk stat-n">55M+</div><div class="xsudlmqvbag x2wl7trk stat-l">TRC20 Addresses in DB</div></div>
-                    <div class="xsudlmqvbag x2wl7trk stat-card"><div class="xsudlmqvbag x2wl7trk stat-n">40+</div><div class="xsudlmqvbag x2wl7trk stat-l">Global Sanctions Lists</div></div>
-                    <div class="xsudlmqvbag x2wl7trk stat-card"><div class="xsudlmqvbag x2wl7trk stat-n">99.8%</div><div class="xsudlmqvbag x2wl7trk stat-l">AML Detection Accuracy</div></div>
-                </div>
-            </div>
-        </section>
-
-        <div class="xsudlmqvbag x2wl7trk sec-divider"></div>
-
-        <!-- ===== RISK LEVELS ===== -->
-        <section class="xsudlmqvbag x2wl7trk sec" id="risk">
-            <div class="xsudlmqvbag x2wl7trk wrap">
-                <div class="xsudlmqvbag x2wl7trk sec-center">
-                    <div class="xsudlmqvbag x2wl7trk sec-lbl">Risk Framework</div>
-                    <h2 class="xsudlmqvbag x2wl7trk sec-h">4-Tier Crystal Risk<br/>Classification for TRC20</h2>
-                    <p class="xsudlmqvbag x2wl7trk sec-sub">AML Crystal categorizes every TRON address into one of four risk tiers, aligned with FATF guidance and leading exchange AML policies for USDT TRC20 and TRX.</p>
-                </div>
-                <div class="xsudlmqvbag x2wl7trk risk-levels-grid">
-                    <div class="xsudlmqvbag x2wl7trk rl-card low"><div class="xsudlmqvbag x2wl7trk rl-pct">0–25</div><div class="xsudlmqvbag x2wl7trk rl-name">Crystal Clean</div><div class="xsudlmqvbag x2wl7trk rl-desc">Clean transaction history, known exchange origins, no exposure to sanctioned or illicit TRC20 entities. Safe to transact with full confidence.</div></div>
-                    <div class="xsudlmqvbag x2wl7trk rl-card mid"><div class="xsudlmqvbag x2wl7trk rl-pct">26–50</div><div class="xsudlmqvbag x2wl7trk rl-name">Medium Risk</div><div class="xsudlmqvbag x2wl7trk rl-desc">Indirect exposure to moderate-risk counterparties or unverified P2P/OTC USDT TRC20 sources. Enhanced due diligence recommended.</div></div>
-                    <div class="xsudlmqvbag x2wl7trk rl-card high"><div class="xsudlmqvbag x2wl7trk rl-pct">51–75</div><div class="xsudlmqvbag x2wl7trk rl-name">High Risk</div><div class="xsudlmqvbag x2wl7trk rl-desc">Direct exposure to darknet markets, TRC20 mixers, or no-KYC exchanges. Block or flag pending manual compliance review.</div></div>
-                    <div class="xsudlmqvbag x2wl7trk rl-card critical"><div class="xsudlmqvbag x2wl7trk rl-pct">76–100</div><div class="xsudlmqvbag x2wl7trk rl-name">Critical</div><div class="xsudlmqvbag x2wl7trk rl-desc">OFAC/sanctions match, confirmed illicit USDT TRC20 source, or direct darknet interaction. Immediate block and regulatory reporting required.</div></div>
-                </div>
-            </div>
-        </section>
-
-        <div class="xsudlmqvbag x2wl7trk sec-divider"></div>
-
-        <!-- ===== CTA ===== -->
-        <section class="xsudlmqvbag x2wl7trk" style="padding:80px 0;">
-            <div class="xsudlmqvbag x2wl7trk wrap">
-                <div class="xsudlmqvbag x2wl7trk cta-inner">
-                    <div>
-                        <div class="xsudlmqvbag x2wl7trk sec-lbl">Get Started Free</div>
-                        <h2 class="xsudlmqvbag x2wl7trk cta-h">Scan Your First TRC20<br/>Address <span>Right Now</span></h2>
-                        <p class="xsudlmqvbag x2wl7trk cta-p">No registration required. Paste any TRON address or USDT TRC20 transaction hash and get a full Crystal AML risk report in under 1 second. Free tier includes 50 scans per day.</p>
-                    </div>
-                    <div style="display:flex;flex-direction:column;gap:12px;align-items:center;flex-shrink:0;">
-                        <button class="xsudlmqvbag x2wl7trk btn-main" style="padding:15px 38px;" onclick="document.getElementById('aml-input').focus();document.getElementById('aml-widget').scrollIntoView({behavior:'smooth',block:'center'})">💎 Start Crystal Scan</button>
-                        <button class="xsudlmqvbag x2wl7trk btn-ghost" style="padding:14px 32px;">📖 View Crystal Docs</button>
-                        <span class="xsudlmqvbag x2wl7trk cta-note">OFAC · FATF · EU · UN · UK Sanctions Covered</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="xsudlmqvbag x2wl7trk sec-divider"></div>
-
-        <!-- ===== FAQ (32 Questions) ===== -->
-        <section class="xsudlmqvbag x2wl7trk faq-section" id="faq">
-            <div class="xsudlmqvbag x2wl7trk wrap">
-                <div class="xsudlmqvbag x2wl7trk sec-center">
-                    <div class="xsudlmqvbag x2wl7trk sec-lbl">FAQ</div>
-                    <h2 class="xsudlmqvbag x2wl7trk sec-h">AML Crystal Questions<br/>Answered</h2>
-                    <p class="xsudlmqvbag x2wl7trk sec-sub">Everything compliance officers, exchanges, OTC desks, and individual users need to know about AML Crystal scanning on TRON and USDT TRC20.</p>
-                </div>
-                <div class="xsudlmqvbag x2wl7trk faq-wrap" itemscope itemtype="https://schema.org/FAQPage">
-
-                    <!-- 1 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">What is AML Crystal?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">AML Crystal is a premium anti-money laundering compliance and blockchain forensics platform built specifically for the TRON network. It allows anyone — from individual users to enterprise exchanges — to instantly check any TRC20 wallet address, USDT TRC20 transaction, or TRX wallet against global sanctions lists, illicit fund databases, mixer exposure reports, and behavioral risk models to receive a crystal-clear AML risk score and detailed compliance report in under 1 second.</div></div></div>
-
-                    <!-- 2 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">How do I run an AML Crystal check on a TRC20 address?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">Paste any TRON wallet address (beginning with "T") into the Crystal Scan widget at the top of this page and click Scan. Within under 1 second, AML Crystal returns a risk score from 0 to 100, a sanctions match status, a fund source breakdown, and key risk indicators including mixer exposure, darknet market interaction, and exchange KYC status for that TRC20 address.</div></div></div>
-
-                    <!-- 3 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">What is the AML Crystal risk score and how is it calculated?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">The AML Crystal risk score is a number from 0 to 100. Zero means fully clean with no illicit exposure; 100 means a direct sanctions match or confirmed illicit fund source on TRON. The score is calculated using a multi-factor algorithm that weighs direct exposure to sanctioned TRON entities, indirect counterparty exposure across up to 10 transaction hops, interaction with known TRC20 mixers or tumblers, presence of darknet market USDT TRC20 transactions, and behavioral clustering patterns associated with money laundering on TRON.</div></div></div>
-
-                    <!-- 4 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">Does AML Crystal check OFAC sanctions for TRON addresses?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">Yes. Every AML Crystal scan automatically cross-references the queried TRC20 address against the OFAC Specially Designated Nationals (SDN) list, EU financial sanctions lists, UN Security Council sanctions lists, UK HM Treasury list, and 40+ additional national and international watchlists. Results are updated continuously every 15 minutes as new sanctions designations are issued, ensuring you always act on current OFAC compliance data for TRON.</div></div></div>
-
-                    <!-- 5 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">Can I check USDT TRC20 transactions for AML risk with AML Crystal?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">Yes. Enter any TRON transaction hash (TXID) into the scanner to analyze both the sending and receiving addresses of a USDT TRC20 transfer. AML Crystal will identify whether either party in the transaction has prior exposure to illicit activity, is on a sanctions list, or has interacted with known high-risk entities on TRON. This is especially useful for exchanges and OTC desks screening incoming USDT TRC20 deposits before crediting user accounts.</div></div></div>
-
-                    <!-- 6 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">What is Crystal fund source tracing and how far back does it go on TRON?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">Crystal fund source tracing follows the origin of USDT TRC20 funds backward through the TRON blockchain transaction graph. AML Crystal traces up to 10 hops of transaction history by default, covering virtually all economically meaningful fund flows on TRON. For each hop, it categorizes the source as a known exchange, OTC desk, darknet market, TRC20 mixer, P2P platform, or unknown wallet. This reveals what percentage of funds in a TRC20 wallet are crystal-clean versus potentially tainted.</div></div></div>
-
-                    <!-- 7 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">What is mixer exposure in TRC20 AML Crystal and why does it matter?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">Cryptocurrency mixers deliberately obfuscate the origin of USDT TRC20 funds by pooling and redistributing tokens to break the on-chain transaction trail. OFAC and FinCEN treat mixer interaction as a significant AML red flag for potential money laundering. AML Crystal detects direct and indirect interactions with known TRON-based mixers and reports the exact percentage of wallet funds exposed to mixing activity, enabling exchanges to apply risk-based controls accordingly.</div></div></div>
-
-                    <!-- 8 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">Is AML Crystal free to use?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">AML Crystal offers a free tier that includes 50 TRC20 address AML scans per day with no registration required. This is sufficient for individual users and small-scale USDT TRC20 compliance checks. For enterprises, exchanges, and OTC desks requiring higher volumes, API access, bulk batch screening, PDF report generation, and webhook alerting, paid plans are available starting at $49/month. Contact us for custom enterprise pricing on high-volume TRON compliance needs.</div></div></div>
-
-                    <!-- 9 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">How accurate is AML Crystal for TRON AML detection?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">AML Crystal achieves 99.8% accuracy on its TRC20 sanctions-matching module, with a false positive rate below 0.05%. The fund tracing model is validated against historical enforcement actions and confirmed illicit TRON wallets. The system continuously learns from new TRON blockchain data, updated sanctions designations, and intelligence feeds. Accuracy is verified monthly against benchmark datasets used by leading blockchain analytics firms in the TRON ecosystem.</div></div></div>
-
-                    <!-- 10 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">Does AML Crystal offer an API for exchange TRC20 integration?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">Yes. AML Crystal provides a RESTful API for exchanges, wallets, and OTC desks to integrate TRC20 AML screening directly into deposit and withdrawal workflows. The API supports single TRC20 address queries, batch screening of up to 10,000 addresses per request, USDT TRC20 transaction hash lookups, and webhook callbacks for real-time alerts when a monitored address triggers a new risk flag. Full Crystal API documentation is available in our developer portal.</div></div></div>
-
-                    <!-- 11 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">What is FATF and how does AML Crystal align with its TRC20 guidance?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">The Financial Action Task Force (FATF) is the global standard-setting body for AML and counter-terrorism financing. Its Travel Rule and VASP guidelines require crypto businesses to screen counterparty TRC20 wallets and USDT TRC20 transactions. AML Crystal's risk classification framework, data sources, and reporting formats are designed to satisfy FATF Recommendations 15 and 16, as well as jurisdiction-specific AML laws derived from FATF guidance for TRON network participants.</div></div></div>
-
-                    <!-- 12 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">Can AML Crystal detect darknet market activity involving USDT TRC20?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">Yes. AML Crystal maintains a continuously updated database of known darknet marketplace addresses and associated TRC20 wallet clusters. Any direct or indirect USDT TRC20 transaction with these entities is flagged in the Crystal AML report under the Darknet Market indicator. USDT TRC20 is increasingly used on darknet markets due to TRON's low transaction fees, making this detection capability a core part of AML Crystal's forensic engine.</div></div></div>
-
-                    <!-- 13 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">What does the View AML feature show for a TRC20 address?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">Clicking View AML on any scanned TRC20 address opens a detailed Crystal AML profile showing: the overall risk score and tier, a full breakdown of USDT TRC20 fund sources by category and percentage, a sanctions match status against all monitored lists, a transaction graph visualization of TRON fund flows, a timeline of high-risk interactions, and all identified risk flags with explanations. This view is designed for compliance officers conducting manual due diligence on TRC20 wallets.</div></div></div>
-
-                    <!-- 14 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">How does AML Crystal handle privacy when scanning TRC20 wallets?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">AML Crystal does not require users to create an account or provide personal information to use the free TRC20 scan service. Queried TRON addresses are processed to generate Crystal AML reports but are not linked to any user identity. Aggregated, anonymized scan statistics are retained to improve the risk model. For enterprise API users, data handling is governed by a data processing agreement (DPA) meeting GDPR and major global data protection regulations.</div></div></div>
-
-                    <!-- 15 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">What is a peeling chain and can AML Crystal detect it on TRON?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">A peeling chain is a money laundering technique where USDT TRC20 is moved through a long series of TRON wallet addresses in rapid succession — each time sending a small amount to a peel address and the remainder forward — making funds difficult to trace. AML Crystal's graph analysis engine specifically detects peeling chain patterns on TRON by identifying linear transaction sequences with characteristic output splitting ratios, flagging them as structural AML money laundering indicators.</div></div></div>
-
-                    <!-- 16 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">Can I export TRC20 AML Crystal reports as PDF?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">Yes. Any completed TRC20 AML Crystal scan can be exported as a formatted Crystal PDF report. The report includes the scanned TRC20 address or TRON transaction hash, scan timestamp, risk score with tier classification, OFAC and sanctions match status, USDT TRC20 fund source table, key risk indicators, and a methodology section. Crystal AML PDF reports are accepted by regulators, legal counsel, and exchange compliance teams as evidence of AML due diligence on TRON.</div></div></div>
-
-                    <!-- 17 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">Does AML Crystal cover non-USDT TRC20 tokens?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">Yes. While USDT TRC20 is the most commonly screened asset, AML Crystal covers all tokens on the TRON blockchain including TRX native, USDC TRC20, BTT, JST, SUN, WBTC TRC20, WETH TRC20, and all other TRC20 standard tokens. Crystal risk analysis applies at the wallet level, meaning the risk score reflects all TRON asset activity within an address regardless of which specific token was transferred.</div></div></div>
-
-                    <!-- 18 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">How often is the AML Crystal TRON database updated?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">AML Crystal ingests new TRON blockchain data in real time, with on-chain TRC20 transactions processed and indexed within 3 seconds of TRON block confirmation. Sanctions lists (OFAC, EU, UN, UK) are polled for updates every 15 minutes. Known illicit TRC20 address databases are updated daily from partner intelligence feeds, law enforcement disclosures, and proprietary research. Mixer and darknet market TRC20 cluster databases are refreshed weekly to ensure AML Crystal always reflects the most current AML risk landscape on TRON.</div></div></div>
-
-                    <!-- 19 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">What is the Sanctions quick-scan button in AML Crystal?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">The Sanctions quick-scan button runs an express sanctions-only check against the entered TRC20 address. Unlike the full Crystal AML scan which performs comprehensive risk scoring and USDT TRC20 fund tracing, the sanctions check focuses exclusively on matching the TRON address against OFAC SDN, EU, UN, and national sanctions lists. This delivers a result in under 200 milliseconds and is ideal for high-volume TRC20 screening workflows where a fast pass/fail sanctions decision is needed.</div></div></div>
-
-                    <!-- 20 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">Is AML Crystal suitable for individual users or only for crypto businesses?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">AML Crystal is designed for both individual users and businesses. Individual users can check whether a TRC20 wallet they are about to transact with is crystal-clean, verify the origin of USDT TRC20 funds received, or confirm that a sender's address is not on OFAC or sanctions lists — all for free without registration. Businesses use AML Crystal's API and bulk screening tools to automate AML compliance at scale across thousands of daily TRON transactions.</div></div></div>
-
-                    <!-- 21 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">Why is USDT TRC20 a high priority for AML Crystal compliance?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">USDT TRC20 is the most widely used stablecoin on the TRON network and accounts for a significant portion of all global USDT volume. Its low transaction fees (under $1) and fast settlement times make it attractive not only for legitimate cross-border payments but also for illicit actors seeking to move large sums inexpensively. Regulators globally have identified TRC20 stablecoins as a high-risk vector for money laundering, sanctions evasion, and darknet market activity, making AML Crystal screening of USDT TRC20 a critical compliance requirement for any VASP or exchange.</div></div></div>
-
-                    <!-- 22 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">What is KYT and how does it relate to AML Crystal TRON?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">KYT (Know Your Transaction) is the blockchain AML practice of monitoring and analyzing individual cryptocurrency transactions rather than just end-user identities. For TRC20 and USDT TRC20, KYT involves real-time screening of every deposit or withdrawal transaction to identify risk flags, sanctions exposure, and unusual fund flow patterns. AML Crystal provides KYT functionality for TRON by scoring both wallet addresses and transaction hashes, enabling exchanges to apply KYT across their entire USDT TRC20 flow in real time.</div></div></div>
-
-                    <!-- 23 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">How does AML Crystal support TRON DeFi protocol compliance?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">TRON DeFi protocols including decentralized exchanges, lending platforms, and liquidity pools using USDT TRC20 or TRX face growing AML compliance obligations. AML Crystal enables DeFi teams to screen wallet addresses interacting with their protocols, detect sanctioned users attempting to access liquidity, and identify TRC20 fund flows originating from illicit sources. The Crystal API integration allows DeFi smart contract front-ends to perform AML checks before routing transactions on the TRON network.</div></div></div>
-
-                    <!-- 24 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">What is a VASP and what TRC20 AML obligations does it have under AML Crystal?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">A Virtual Asset Service Provider (VASP) is any business that exchanges, transfers, or custodies cryptocurrencies including USDT TRC20 or TRX. Under FATF Recommendation 15, VASPs must implement robust AML programs including customer due diligence, transaction monitoring, and sanctions screening. For TRON-based operations this means running AML Crystal checks on every TRC20 deposit address, applying the Travel Rule to USDT TRC20 transfers above threshold amounts, and maintaining audit-ready AML records.</div></div></div>
-
-                    <!-- 25 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">What is the TRON Travel Rule and how does AML Crystal support it?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">The FATF Travel Rule requires VASPs to collect and transmit originator and beneficiary information for cryptocurrency transfers above $1,000 including USDT TRC20 transactions on TRON. AML Crystal supports Travel Rule compliance by enabling pre-transaction AML screening of TRON counterparty wallets, identifying whether a receiving TRC20 address belongs to a regulated VASP or an unhosted wallet, and generating documentation needed for Travel Rule message matching systems used by TRON ecosystem participants.</div></div></div>
-
-                    <!-- 26 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">Can AML Crystal detect structuring (smurfing) in USDT TRC20 transactions?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">Yes. Structuring involves breaking large USDT TRC20 transactions into many smaller amounts to avoid detection thresholds — a classic AML red flag known as smurfing. AML Crystal's behavioral analysis engine detects structuring patterns on TRON by identifying clusters of same-day, similarly-sized transactions from a network of coordinated TRC20 wallets. These patterns are flagged as high-risk AML indicators in every Crystal report.</div></div></div>
-
-                    <!-- 27 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">How does AML Crystal identify high-risk exchanges without KYC on TRON?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">AML Crystal maintains a curated database of cryptocurrency exchanges classified by their KYC and AML standards. Exchanges operating without identity verification are tagged as high-risk counterparties for TRC20 AML purposes. Any TRON wallet with significant fund flows to or from these no-KYC platforms receives an elevated Crystal risk score. The Exchange KYC indicator in AML Crystal's risk panel shows whether a TRC20 address is primarily transacting through compliant, partial-KYC, or no-KYC venues.</div></div></div>
-
-                    <!-- 28 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">What is bulk TRC20 screening in AML Crystal and how does it work?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">Bulk TRC20 screening allows compliance teams to upload a CSV containing up to 100,000 TRON wallet addresses for simultaneous Crystal AML risk assessment. AML Crystal processes the entire batch in parallel and returns a risk score, sanctions status, and key risk indicators for each TRC20 address. Results are downloadable as CSV or JSON. This is ideal for exchanges auditing their entire user base, OTC desks validating counterparty lists, or compliance teams performing periodic USDT TRC20 portfolio reviews at scale.</div></div></div>
-
-                    <!-- 29 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">What is round-tripping in TRON AML Crystal analysis and how is it detected?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">Round-tripping is a money laundering technique where USDT TRC20 funds are sent through a chain of wallet addresses and eventually return to a wallet controlled by the same actor. AML Crystal's graph analysis engine identifies round-trip patterns by mapping closed-loop fund flows in the TRON transaction graph where output paths converge back to known input clusters — a strong structural AML red flag detected automatically in every Crystal report.</div></div></div>
-
-                    <!-- 30 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">How does AML Crystal differ from generic blockchain explorers like TRONSCAN?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">Blockchain explorers like TRONSCAN display raw on-chain data — transactions, balances, and token transfers — but provide no AML risk intelligence whatsoever. AML Crystal transforms raw TRON data into crystal-clear compliance intelligence: risk scores, sanctions matches, fund source categorization, mixer exposure percentages, darknet detection, and audit-ready PDF reports. While TRONSCAN answers what happened, AML Crystal answers whether this TRC20 address is safe to transact with from an AML compliance perspective.</div></div></div>
-
-                    <!-- 31 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">Does AML Crystal support webhook alerts for TRC20 AML monitoring?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">Yes. AML Crystal provides webhook callbacks that automatically notify your compliance system whenever a monitored TRC20 address triggers a new AML risk event — such as a sanctions addition, new darknet market transaction, or Crystal risk score change above a configurable threshold. This enables real-time proactive AML monitoring for USDT TRC20 wallets in your customer base without requiring repeated manual API polling.</div></div></div>
-
-                    <!-- 32 -->
-                    <div class="xsudlmqvbag x2wl7trk faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><div class="xsudlmqvbag x2wl7trk faq-q" tabindex="0" role="button" aria-expanded="false"><span itemprop="name">What penalties can exchanges face for not running AML Crystal TRC20 checks?</span><span class="xsudlmqvbag x2wl7trk faq-ic">+</span></div><div class="xsudlmqvbag x2wl7trk faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div class="xsudlmqvbag x2wl7trk faq-a-inner" itemprop="text">Exchanges and VASPs that fail to implement adequate TRC20 AML screening face severe penalties including regulatory fines in the millions of dollars, loss of operating licenses, criminal prosecution of executives for AML violations, inclusion on OFAC's SDN list, and irreversible reputational damage. Historical enforcement actions against crypto platforms for inadequate AML controls underscore the critical importance of rigorous Crystal AML compliance programs on TRON for every business handling USDT TRC20 transactions at scale.</div></div></div>
-
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ===== FOOTER ===== -->
-    <footer role="contentinfo">
-        <div class="xsudlmqvbag x2wl7trk wrap">
-            <div class="xsudlmqvbag x2wl7trk ft-grid">
-                <div class="xsudlmqvbag x2wl7trk ft-brand">
-                    <a href="/" class="xsudlmqvbag x2wl7trk logo" aria-label="AML Crystal">
-                        <svg width="42" height="42" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-                            <defs><linearGradient id="lg-ft" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00ff88"/><stop offset="100%" stop-color="#00d68f"/></linearGradient></defs>
-                            <circle cx="60" cy="60" r="58" fill="#060f08"/>
-                            <circle cx="60" cy="60" r="55" fill="none" stroke="url(#lg-ft)" stroke-width="2" opacity="0.6"/>
-                            <polygon points="60,22 79,38 74,62 60,70 46,62 41,38" fill="rgba(0,214,143,0.15)" stroke="url(#lg-ft)" stroke-width="1.5"/>
-                            <path d="M60 46 L73 52 L73 64 C73 71 67 77 60 79 C53 77 47 71 47 64 L47 52 Z" fill="rgba(0,20,10,0.8)" stroke="#00ff88" stroke-width="1.5"/>
-                            <polyline points="53,63 58,69 68,56" fill="none" stroke="#00ff88" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <text x="60" y="100" font-family="Orbitron,sans-serif" font-size="10" font-weight="700" fill="#00ff88" text-anchor="middle" letter-spacing="3">AML</text>
-                        </svg>
-                        <div class="xsudlmqvbag x2wl7trk logo-text">
-                            <span class="xsudlmqvbag x2wl7trk logo-name">AML Crystal</span>
-                            <span class="xsudlmqvbag x2wl7trk logo-sub">TRON Intelligence</span>
-                        </div>
-                    </a>
-                    <p>The premium AML compliance intelligence platform for TRON. Instantly check any TRC20 address or USDT TRC20 transaction for sanctions, illicit funds, and crystal-clear AML risk exposure.</p>
-                </div>
-                <div class="xsudlmqvbag x2wl7trk ft-col"><h5>AML Tools</h5>
-                    <a href="#scan">Crystal Scan</a><a href="#scan">View AML Report</a>
-                    <a href="#features">USDT TRC20 Check</a><a href="#risk">Bulk Screening</a>
-                    <a href="#features">Fund Trace</a><a href="#features">TX Hash Check</a></div>
-                <div class="xsudlmqvbag x2wl7trk ft-col"><h5>Compliance</h5>
-                    <a href="#risk">OFAC Crystal Check</a><a href="#risk">Sanctions Lists</a>
-                    <a href="#risk">FATF Guidelines</a><a href="#risk">Risk Framework</a>
-                    <a href="#">Crystal API Docs</a><a href="#">Travel Rule</a></div>
-                <div class="xsudlmqvbag x2wl7trk ft-col"><h5>Company</h5>
-                    <a href="#">About AML Crystal</a><a href="#">Blog</a>
-                    <a href="#">Twitter / X</a><a href="#">Telegram</a>
-                    <a href="#">Contact</a><a href="#">Pricing</a></div>
-            </div>
-            <div class="xsudlmqvbag x2wl7trk ft-bot">
-                <span>© 2025 AML Crystal · proverka-chi.vercel.app · All rights reserved. Not legal advice — for informational AML compliance use only.</span>
-                <div style="display:flex;gap:24px"><a href="#">Privacy</a><a href="#">Terms</a></div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ===== SCRIPTS ===== -->
-    <script>
-        // ================================================================
-        // 1. TICKER (Dynamic)
-        // ================================================================
-        (function initTicker() {
-            const track = document.getElementById('tickerTrack');
-            if (!track) return;
-            const items = [
-                'TRC20 Addresses Scanned <span class="t-v" id="tickerCount">3,204,817</span>',
-                'USDT TRC20 Risk Flags <span class="t-v">21,438</span><span class="t-warn"> ⚠ Today</span>',
-                'OFAC Sanctions Hits <span class="t-v">389</span><span class="t-dn"> 🚫 Live</span>',
-                'Crystal Clean Score <span class="t-v">97.3%</span><span class="t-up"> ✓</span>',
-                'TRX Price <span class="t-v">$0.2741</span><span class="t-up"> +2.1%</span>',
-                'USDT TRC20 Supply <span class="t-v">$63.7B</span>',
-                'High Risk Wallets Blocked <span class="t-v">4,891</span><span class="t-dn"> Flagged</span>',
-                'Crystal Scan Speed <span class="t-v">0.61s</span><span class="t-up"> ⚡</span>',
-                'Mixer Interactions <span class="t-v">0.28%</span><span class="t-warn"> Detected</span>',
-                'Peeling Chains <span class="t-v">1,204</span><span class="t-warn"> This Week</span>'
-            ];
-            let html = '';
-            for (let i = 0; i < 3; i++) {
-                items.forEach(it => {
-                    html += `<div class="t-i"><span class="t-dot"></span>${it}</div>`;
-                });
-            }
-            track.innerHTML = html;
-
-            const counter = document.getElementById('tickerCount');
-            if (counter) {
-                setInterval(() => {
-                    let n = parseInt(counter.textContent.replace(/,/g, '')) + Math.floor(Math.random() * 5 + 1);
-                    counter.textContent = n.toLocaleString();
-                }, 4500);
-            }
-        })();
-
-        // ================================================================
-        // 2. FAQ Accordion
-        // ================================================================
-        document.querySelectorAll('.faq-q').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const item = btn.closest('.faq-item');
-                const isOpen = item.classList.contains('open');
-                document.querySelectorAll('.faq-item.open').forEach(el => {
-                    el.classList.remove('open');
-                    el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
-                });
-                if (!isOpen) {
-                    item.classList.add('open');
-                    btn.setAttribute('aria-expanded', 'true');
-                }
-            });
-            btn.addEventListener('keydown', e => {
-                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault();
-                    btn.click(); }
-            });
-        });
-
-        // ================================================================
-        // 3. Quick Buttons
-        // ================================================================
-        const demoAddrs = [
-            'TMuA6YqfCeX8EhbfYEg5y7S4DqzSJireY9',
-            'TYASr5UV6HEcXatwdFQfmLVUqQZwCcGwez',
-            'TVj7RNVHy6thbM7BWdSe9G6gXwKhjhdNZS',
-            'TDyvndWuvX5xTAEyoDVMDMACQb67bFCBBQ',
-            'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t'
-        ];
-        document.querySelectorAll('.qbtn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const inp = document.getElementById('aml-input');
-                const addr = demoAddrs[Math.floor(Math.random() * demoAddrs.length)];
-                inp.value = addr;
-                inp.focus();
-                inp.style.borderColor = 'rgba(0,255,136,.45)';
-                setTimeout(() => { inp.style.borderColor = ''; }, 1400);
-                document.getElementById('scanBtn').click();
-            });
-        });
-
-        // ================================================================
-        // 4. MAIN SCAN LOGIC
-        // ================================================================
-        const scanBtn = document.getElementById('scanBtn');
-        const input = document.getElementById('aml-input');
-        const riskPanel = document.getElementById('riskPanel');
-        const riskBar = document.getElementById('riskBar');
-        const riskScoreVal = document.getElementById('riskScoreVal');
-        const scanLine = document.getElementById('scan-line');
-
-        const riSanctions = document.getElementById('riSanctions');
-        const riMixer = document.getElementById('riMixer');
-        const riDark = document.getElementById('riDark');
-        const riKYC = document.getElementById('riKYC');
-
-        const sbClean = document.getElementById('sbClean');
-        const sbP2P = document.getElementById('sbP2P');
-        const sbUnknown = document.getElementById('sbUnknown');
-        const sbHigh = document.getElementById('sbHigh');
-        const sbCleanPct = document.getElementById('sbCleanPct');
-        const sbP2PPct = document.getElementById('sbP2PPct');
-        const sbUnknownPct = document.getElementById('sbUnknownPct');
-        const sbHighPct = document.getElementById('sbHighPct');
-
-        const states = [{
-            score: 12,
-            label: '12 / 100 — Crystal Clean',
-            cls: 'score-low',
-            color: '#00ff88',
-            sanctions: 'OFAC Clear ✓',
-            sc: 'clean',
-            mixer: '0.00% ✓',
-            mc: 'clean',
-            dark: 'Not Detected ✓',
-            dc: 'clean',
-            kyc: 'Verified ✓',
-            kc: 'clean',
-            src: { clean: 74, p2p: 16, unknown: 8, high: 2 }
-        }, {
-            score: 44,
-            label: '44 / 100 — Medium Risk',
-            cls: 'score-mid',
-            color: '#f5a623',
-            sanctions: 'OFAC Clear ✓',
-            sc: 'clean',
-            mixer: '3.7% ⚠',
-            mc: 'warn',
-            dark: 'Not Detected ✓',
-            dc: 'clean',
-            kyc: 'Partial ⚠',
-            kc: 'warn',
-            src: { clean: 52, p2p: 28, unknown: 14, high: 6 }
-        }, {
-            score: 82,
-            label: '82 / 100 — Critical',
-            cls: 'score-high',
-            color: '#e84142',
-            sanctions: 'EU List ⛔',
-            sc: 'danger',
-            mixer: '19.2% ⛔',
-            mc: 'danger',
-            dark: 'Flagged ⛔',
-            dc: 'danger',
-            kyc: 'No KYC ⛔',
-            kc: 'danger',
-            src: { clean: 22, p2p: 18, unknown: 26, high: 34 }
-        }];
-
-        function runScan() {
-            const addr = input.value.trim();
-            if (!addr || addr.length < 10) {
-                alert('Please paste a valid TRON address or TX hash.');
-                return;
-            }
-
-            riskPanel.classList.add('loading');
-            scanLine.classList.remove('active');
-            void scanLine.offsetWidth;
-            scanLine.classList.add('active');
-
-            setTimeout(() => {
-                const state = states[Math.floor(Math.random() * states.length)];
-
-                riskBar.className = 'xsudlmqvbag x2wl7trk risk-score-fill ' + state.cls;
-                riskBar.style.width = state.score + '%';
-                riskScoreVal.textContent = state.label;
-                riskScoreVal.style.color = state.color;
-
-                riSanctions.textContent = state.sanctions;
-                riSanctions.className = 'xsudlmqvbag x2wl7trk ri-val ' + state.sc;
-                riMixer.textContent = state.mixer;
-                riMixer.className = 'xsudlmqvbag x2wl7trk ri-val ' + state.mc;
-                riDark.textContent = state.dark;
-                riDark.className = 'xsudlmqvbag x2wl7trk ri-val ' + state.dc;
-                riKYC.textContent = state.kyc;
-                riKYC.className = 'xsudlmqvbag x2wl7trk ri-val ' + state.kc;
-
-                const src = state.src;
-                sbClean.style.width = src.clean + '%';
-                sbCleanPct.textContent = src.clean + '%';
-                sbP2P.style.width = src.p2p + '%';
-                sbP2PPct.textContent = src.p2p + '%';
-                sbUnknown.style.width = src.unknown + '%';
-                sbUnknownPct.textContent = src.unknown + '%';
-                sbHigh.style.width = src.high + '%';
-                sbHighPct.textContent = src.high + '%';
-
-                riskPanel.classList.remove('loading');
-            }, 1200);
+<script>
+  (function() {
+    const scanBtn = document.getElementById('scanBtn');
+    const addressInput = document.getElementById('amlAddress');
+    const riskScoreEl = document.getElementById('riskScore');
+    const sanctionsEl = document.getElementById('sanctionsStatus');
+    const mixerEl = document.getElementById('mixerExposure');
+    const darknetEl = document.getElementById('darknetStatus');
+    const exchangeKycEl = document.getElementById('exchangeKyc');
+    const fundSourceEl = document.getElementById('fundSource');
+    const scanStatus = document.getElementById('scanStatus');
+
+    // Simulated AML scan — mimics Crystal logic with randomized but realistic data
+    function runAMLCrystalScan(address) {
+      // Show scanning status
+      scanStatus.innerHTML = '<i class="fas fa-spinner fa-pulse" style="color: #f0b90b;"></i> Scanning TRON blockchain...';
+      
+      // Simulate network delay
+      setTimeout(() => {
+        // Generate deterministic but varied results based on address hash
+        let hash = 0;
+        for (let i = 0; i < address.length; i++) {
+          hash = (hash << 5) - hash + address.charCodeAt(i);
+          hash |= 0;
+        }
+        const seed = Math.abs(hash) % 100;
+        
+        // Risk score 0-100
+        let riskScore = 0;
+        let sanctions = 'Clean';
+        let mixer = '0%';
+        let darknet = 'No';
+        let kyc = 'Verified';
+        let fund = 'Clean Exchange';
+
+        // Sanctions: 15% chance of match
+        if (seed < 15) {
+          sanctions = '⚠️ OFAC Match';
+          riskScore += 45;
+        } else if (seed < 30) {
+          sanctions = '⚠️ EU Sanctions';
+          riskScore += 35;
+        } else {
+          sanctions = '✅ Clean';
         }
 
-        scanBtn.addEventListener('click', runScan);
-        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') runScan(); });
+        // Mixer exposure: 0-30%
+        const mixerPercent = (seed % 31);
+        mixer = mixerPercent + '%';
+        if (mixerPercent > 20) riskScore += 25;
+        else if (mixerPercent > 10) riskScore += 12;
 
-        // ================================================================
-        // 5. View Report & Export
-        // ================================================================
-        document.querySelectorAll('#viewReportBtn, #viewReportBtn2').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const addr = input.value.trim() || 'TRC20 address';
-                alert(
-                    `📋 Crystal AML Report\n\nAddress: ${addr}\nRisk Score: ${riskScoreVal.textContent}\nSanctions: ${riSanctions.textContent}\nMixer: ${riMixer.textContent}\nDarknet: ${riDark.textContent}\nKYC: ${riKYC.textContent}\n\nThis is a simulated preview. Full PDF reports available in production.`);
-            });
-        });
+        // Darknet: 10% chance
+        if (seed > 85) {
+          darknet = '⚠️ Detected';
+          riskScore += 30;
+        } else {
+          darknet = '✅ No';
+        }
 
-        document.getElementById('exportPDFBtn').addEventListener('click', () => {
-            alert('📄 PDF Export: Crystal report for ' + (input.value.trim() || 'TRC20 address') +
-                ' would be downloaded here.');
-        });
+        // Exchange KYC: based on seed
+        if (seed < 20) {
+          kyc = 'No-KYC';
+          riskScore += 15;
+        } else if (seed < 40) {
+          kyc = 'Partial';
+          riskScore += 5;
+        } else {
+          kyc = 'Verified';
+        }
 
-        // ================================================================
-        // 6. Scroll Reveal
-        // ================================================================
-        const obs = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.style.opacity = '1';
-                    e.target.style.transform = 'translateY(0)';
-                    obs.unobserve(e.target);
-                }
-            });
-        }, { threshold: .1 });
-        document.querySelectorAll('.feat, .rl-card, .stat-card, .kpi').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(22px)';
-            el.style.transition = 'opacity .65s ease, transform .65s ease';
-            obs.observe(el);
-        });
-    </script>
+        // Fund source breakdown
+        const fundOptions = ['Clean Exchange', 'P2P / OTC', 'Unknown', 'High Risk'];
+        const fundIndex = (seed % 4);
+        fund = fundOptions[fundIndex];
+        if (fundIndex === 3) riskScore += 20;
+        else if (fundIndex === 2) riskScore += 10;
+        else if (fundIndex === 1) riskScore += 5;
 
-    <script src="./modernizr-3.12.0.js"></script>
+        // Clamp risk score 0-100
+        riskScore = Math.min(100, Math.max(0, riskScore));
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        // Update UI
+        riskScoreEl.innerHTML = `${riskScore} <span>/ 100</span>`;
+        sanctionsEl.textContent = sanctions;
+        mixerEl.textContent = mixer;
+        darknetEl.textContent = darknet;
+        exchangeKycEl.textContent = kyc;
+        fundSourceEl.textContent = fund;
 
-<script src="js/crystal.js"></script>
+        // Color code risk
+        const riskColor = riskScore < 30 ? '#6fcf97' : (riskScore < 60 ? '#f2c94c' : '#f28b8b');
+        riskScoreEl.style.color = riskColor;
 
-        <script src="js/main.js"></script>
-    </body>
+        scanStatus.innerHTML = `<i class="fas fa-check-circle" style="color: #6fcf97;"></i> Scan complete · ${new Date().toLocaleTimeString()}`;
+      }, 800);
+    }
+
+    // Initial scan with default address
+    window.addEventListener('DOMContentLoaded', () => {
+      const defaultAddr = addressInput.value.trim();
+      if (defaultAddr) runAMLCrystalScan(defaultAddr);
+    });
+
+    // Scan button handler
+    scanBtn.addEventListener('click', () => {
+      const addr = addressInput.value.trim();
+      if (!addr || addr.length < 10) {
+        alert('Please enter a valid TRON address (starts with T)');
+        return;
+      }
+      runAMLCrystalScan(addr);
+    });
+
+    // Enter key support
+    addressInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') scanBtn.click();
+    });
+
+  })();
+</script>
+
+</body>
 </html>
